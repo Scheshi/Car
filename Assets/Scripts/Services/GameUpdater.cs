@@ -10,6 +10,11 @@ public class GameUpdater : MonoBehaviour
     private List<Action> _actions = new List<Action>();
     
     #region UnityMethods
+
+    public GameUpdater()
+    {
+        Instance = this;
+    }
     
     private void Start()
     {
