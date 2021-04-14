@@ -8,7 +8,7 @@ namespace Assets.Scripts.Interfaces
     {
         private string _pathToPrefabs = "Prefabs/Backgrounds";
         private Background[] _backgrounds;
-        private float _value = 1;
+        private float _value = 0;
 
         public BackgroundController()
         {
@@ -35,5 +35,9 @@ namespace Assets.Scripts.Interfaces
             }
         }
 
+        public void ChangeSpeed(float value)
+        {
+            _value = value;
+        }
     }
 }

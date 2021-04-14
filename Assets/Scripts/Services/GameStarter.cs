@@ -1,3 +1,4 @@
+using Assets.Scripts.Actions;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Profile;
@@ -9,14 +10,19 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private Transform _placeUI;
     [SerializeField] private float _speedCar;
     private BackgroundController _backgroundController;
+    private InputController _input;
+    private PlayerProfile _profile;
+    private SubscriptionObserver<float> _rightMove;
+    private SubscriptionObserver<float> _leftMove;
     void Start()
     {
         var updater = new GameObject("Updater").AddComponent<GameUpdater>();
-        var profile = new PlayerProfile(_speedCar);
-        var carController = new CarController(profile.Car);
-        profile.Observer.SubscribeObserver(carController.ChangeState);
-        var menuController = new MainMenuController(_placeUI, profile);
-        profile.Observer.SubscribeObserver(OnChangeValue);
+        _profile = new PlayerProfile(_speedCar);
+        var carController = new CarController(_profile.Car);
+        
+        _profile.Observer.SubscribeObserver(carController.ChangeState);
+        var menuController = new MainMenuController(_placeUI, _profile);
+        _profile.Observer.SubscribeObserver(OnChangeValue);
     }
 
     private void OnChangeValue(StateGame state)
@@ -24,7 +30,11 @@ public class GameStarter : MonoBehaviour
         switch (state)
         {
             case StateGame.Game:
+                var leftMove = new SubscriptionObserver<float>();
+                var rightMove = new SubscriptionObserver<float>();
                 _backgroundController = new BackgroundController();
+                rightMove.SubscribeObserver(_backgroundController.ChangeSpeed);
+                _input = new InputController(leftMove, rightMove, _profile.Car);
                 break;
             case StateGame.Menu:
                 _backgroundController?.Dispose();

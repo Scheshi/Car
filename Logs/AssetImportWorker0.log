@@ -1763,3 +1763,59 @@ System memory in use after: 88.9 MB.
 Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 2497.
 Total: 5.420600 ms (FindLiveObjects: 0.772600 ms CreateObjectMapping: 0.277400 ms MarkObjects: 4.174800 ms  DeleteObjects: 0.194000 ms)
 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001172 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.040 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.69 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1818 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 89.0 MB.
+System memory in use after: 89.0 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 2501.
+Total: 3.390900 ms (FindLiveObjects: 0.397400 ms CreateObjectMapping: 0.059200 ms MarkObjects: 2.770200 ms  DeleteObjects: 0.162900 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001391 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.89 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.161 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.90 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1818 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 89.0 MB.
+System memory in use after: 89.0 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 2505.
+Total: 3.959900 ms (FindLiveObjects: 0.575300 ms CreateObjectMapping: 0.074700 ms MarkObjects: 3.122400 ms  DeleteObjects: 0.186000 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 170.807923 seconds.
+  path: Assets/Resources/Prefabs/Backgrounds/Ground.prefab
+  artifactKey: Guid(38e924b488f902b4bb967b27b1da7921) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Prefabs/Backgrounds/Ground.prefab using Guid(38e924b488f902b4bb967b27b1da7921) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89c4cc95a73a61a917215c43f9852c80') in 0.100990 seconds
+  Import took 0.106243 seconds .
+
