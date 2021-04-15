@@ -7,12 +7,14 @@ namespace Assets.Scripts
     {
         private Vector2 _beginTouchPosition = Vector2.zero;
         private Vector2 _currentTouchPosition = Vector2.zero;
+        private Camera _camera;
         
         
         public override void Init(SubscriptionObserver<float> rightMove, SubscriptionObserver<float> leftMove, float speed)
         {
             base.Init(rightMove, leftMove, speed);
             GameUpdater.Instance.Add(Move);
+            _camera = Camera.main;
         }
 
         private void Move()
@@ -23,18 +25,19 @@ namespace Assets.Scripts
                 switch (touch.phase)
                 {
                     case TouchPhase.Began:
-                        _beginTouchPosition = touch.position;
+                        _beginTouchPosition = _camera.ScreenToWorldPoint(touch.position);
                         break;
                     case TouchPhase.Moved:
-                        _currentTouchPosition = touch.position;
+                        _currentTouchPosition = _camera.ScreenToWorldPoint(touch.position);
                         break;
                     case TouchPhase.Stationary:
-                        _currentTouchPosition = touch.position;
+                        _currentTouchPosition = _camera.ScreenToWorldPoint(touch.position);
                         break;
                 }
-
-                var direction = _currentTouchPosition.x - _beginTouchPosition.x;
-                OnRightMove(direction);
+                var direction = _currentTouchPosition - _beginTouchPosition;
+                if(direction.x > 1) direction.Normalize();
+                
+                OnRightMove(direction.x);
             }
         }
 

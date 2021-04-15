@@ -18,7 +18,7 @@ namespace Assets.Scripts
             if(Input.touchCount > 0)
             {
                 var touch = Input.touches[0];
-                var center = _camera.rect.width / 2;
+                var center = _camera.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2)).x;
                 if (touch.position.x > center)
                 {
                     OnRightMove(1);
@@ -33,6 +33,12 @@ namespace Assets.Scripts
         private void OnDestroy()
         {
             GameUpdater.Instance.Remove(Move);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(_camera.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2)), 1);
         }
     }
 }
