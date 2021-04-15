@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _placeUI: {fileID: 1124304852}
-  _speedCar: 60
+  _speedCar: 200
 --- !u!114 &1361209793
 MonoBehaviour:
   m_ObjectHideFlags: 0

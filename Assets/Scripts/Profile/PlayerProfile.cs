@@ -12,7 +12,7 @@ namespace Assets.Scripts.Profile
 
         public PlayerProfile(float speedCar)
         {
-            Car = new Car(speedCar, 2);
+            Car = new Car(speedCar);
             ObserverStateGame = new SubscriptionObserver<StateGame>();
             ObserverInput = new SubscriptionObserver<InputChoose>();
         }

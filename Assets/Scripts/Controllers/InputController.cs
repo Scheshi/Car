@@ -15,7 +15,10 @@ namespace Assets.Scripts.Interfaces
             #if UNITY_EDITOR
             {InputChoose.Keyboard, "Prefabs/Inputs/keyboardMove"},
             #endif
-            {InputChoose.Gyroscope, "Prefabs/Inputs/gyroscopeMove"}
+            {InputChoose.Gyroscope, "Prefabs/Inputs/gyroscopeMove"},
+            {InputChoose.Acceleration, "Prefabs/Inputs/accelerationMove"},
+            {InputChoose.Tap, "Prefabs/Inputs/tapMove"},
+            {InputChoose.Swipe, "Prefabs/Inputs/swipeMove"}
         };
 
         private InputChoose _currentInput = InputChoose.Gyroscope;
