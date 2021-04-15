@@ -20,10 +20,13 @@ public class GameStarter : MonoBehaviour
         new GameObject("Updater").AddComponent<GameUpdater>();
         _profile = new PlayerProfile(_speedCar);
         _carController = new CarController(_profile.Car);
-        
-        _profile.Observer.SubscribeObserver(_carController.ChangeState);
+        _leftMove = new SubscriptionObserver<float>();
+        _rightMove = new SubscriptionObserver<float>();
+        _input = new InputController(_profile.ObserverInput);
+        _profile.ObserverInput.SubscribeObserver(_input.ChangeCurrentInput);
+        _profile.ObserverStateGame.SubscribeObserver(_carController.ChangeState);
         var menuController = new MainMenuController(_placeUI, _profile);
-        _profile.Observer.SubscribeObserver(OnChangeValue);
+        _profile.ObserverStateGame.SubscribeObserver(OnChangeValue);
     }
 
     private void OnChangeValue(StateGame state)
@@ -31,16 +34,18 @@ public class GameStarter : MonoBehaviour
         switch (state)
         {
             case StateGame.Game:
-                var leftMove = new SubscriptionObserver<float>();
-                var rightMove = new SubscriptionObserver<float>();
+                
                 _backgroundController = new BackgroundController();
-                rightMove.SubscribeObserver(_backgroundController.ChangeSpeed);
-                rightMove.SubscribeObserver(_carController.Move);
-                _input = new InputController(leftMove, rightMove, _profile.Car);
+                _rightMove.SubscribeObserver(_backgroundController.ChangeSpeed);
+                _rightMove.SubscribeObserver(_carController.Move);
+                _input.Init(_leftMove, _rightMove, _profile.Car);
+                
+
                 break;
             case StateGame.Menu:
                 _backgroundController?.Dispose();
                 _backgroundController = null;
+                _input.Dispose();
                 break;
         }
     }

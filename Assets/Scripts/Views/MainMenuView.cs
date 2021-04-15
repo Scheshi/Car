@@ -7,14 +7,16 @@ namespace Assets.Scripts
     public class MainMenuView : MonoBehaviour
     {
         [SerializeField] private Button _buttonStart;
+        [SerializeField] private Dropdown _dropdownChooseInput;
 
-        public void Init(Action action)
+        public void Init(Action actionStartGame, Action<int> chooseInput)
         {
             _buttonStart.onClick.AddListener(() =>
             {
-                action.Invoke();
+                actionStartGame.Invoke();
                 gameObject.SetActive(false);
             });
+            _dropdownChooseInput.onValueChanged.AddListener(chooseInput.Invoke);
         }
 
         protected void OnDestroy()

@@ -15,7 +15,7 @@ namespace Assets.Scripts.Interfaces
         {
             _profile = playerProfile;
             _view = LoadView(UITransform);
-            _view.Init(StartGame);
+            _view.Init(StartGame, ChooseInput);
         }
 
         private MainMenuView LoadView(Transform UITransform)
@@ -26,7 +26,12 @@ namespace Assets.Scripts.Interfaces
 
         private void StartGame()
         {
-            _profile.Observer.Value = StateGame.Game;
+            _profile.ObserverStateGame.Value = StateGame.Game;
+        }
+
+        private void ChooseInput(int value)
+        {
+            _profile.ObserverInput.Value = (InputChoose) value;
         }
     }
 }

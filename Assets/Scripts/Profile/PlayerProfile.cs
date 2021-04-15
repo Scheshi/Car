@@ -6,13 +6,15 @@ namespace Assets.Scripts.Profile
     public class PlayerProfile
     {
         public Car Car { get; }
-        public SubscriptionObserver<StateGame> Observer { get; }
+        public SubscriptionObserver<StateGame> ObserverStateGame { get; }
+
+        public SubscriptionObserver<InputChoose> ObserverInput { get; }
 
         public PlayerProfile(float speedCar)
         {
             Car = new Car(speedCar, 2);
-            Observer = new SubscriptionObserver<StateGame>();
-            //Observer.Value = StateGame.Menu;
+            ObserverStateGame = new SubscriptionObserver<StateGame>();
+            ObserverInput = new SubscriptionObserver<InputChoose>();
         }
     }
 }

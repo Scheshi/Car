@@ -33,5 +33,10 @@ namespace Assets.Scripts.Interfaces
         {
             _views.Add(gameObject);
         }
+
+        protected void RemoveGameObject(GameObject gameObject)
+        {
+            _views.Remove(gameObject);
+        }
     }
 }
