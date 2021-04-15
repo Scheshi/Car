@@ -5,7 +5,7 @@ namespace Assets.Scripts.Interfaces
 {
     public class InputController : BaseController
     {
-        private string _pathToInputView = "Prefabs/Inputs/gyroscopeMove";
+        private string _pathToInputView = "Prefabs/Inputs/keyboardMove";
         private BaseInputView _view;
 
 

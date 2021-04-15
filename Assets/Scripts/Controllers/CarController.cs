@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Assets.Scripts.Enums;
+﻿using Assets.Scripts.Enums;
 using UnityEngine;
 using Object = UnityEngine.Object;
+
 
 namespace Assets.Scripts.Interfaces
 {
@@ -15,6 +14,11 @@ namespace Assets.Scripts.Interfaces
         public CarController(Car model)
         {
             _model = model;
+        }
+
+        public void Move(float value)
+        {
+            _view.ChangeSpeed(_model.Moving(value));
         }
 
         private CarView LoadView()

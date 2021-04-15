@@ -14,13 +14,14 @@ public class GameStarter : MonoBehaviour
     private PlayerProfile _profile;
     private SubscriptionObserver<float> _rightMove;
     private SubscriptionObserver<float> _leftMove;
+    private CarController _carController;
     void Start()
     {
-        var updater = new GameObject("Updater").AddComponent<GameUpdater>();
+        new GameObject("Updater").AddComponent<GameUpdater>();
         _profile = new PlayerProfile(_speedCar);
-        var carController = new CarController(_profile.Car);
+        _carController = new CarController(_profile.Car);
         
-        _profile.Observer.SubscribeObserver(carController.ChangeState);
+        _profile.Observer.SubscribeObserver(_carController.ChangeState);
         var menuController = new MainMenuController(_placeUI, _profile);
         _profile.Observer.SubscribeObserver(OnChangeValue);
     }
@@ -34,6 +35,7 @@ public class GameStarter : MonoBehaviour
                 var rightMove = new SubscriptionObserver<float>();
                 _backgroundController = new BackgroundController();
                 rightMove.SubscribeObserver(_backgroundController.ChangeSpeed);
+                rightMove.SubscribeObserver(_carController.Move);
                 _input = new InputController(leftMove, rightMove, _profile.Car);
                 break;
             case StateGame.Menu:

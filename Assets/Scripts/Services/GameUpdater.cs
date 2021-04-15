@@ -13,7 +13,7 @@ public class GameUpdater : MonoBehaviour
 
     public GameUpdater()
     {
-        Instance = this;
+        Instance ??= this;
     }
     
     private void Start()

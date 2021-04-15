@@ -8,7 +8,7 @@ namespace Assets.Scripts.Interfaces
     {
         private string _pathToPrefabs = "Prefabs/Backgrounds";
         private Background[] _backgrounds;
-        private float _value = 0;
+        private float _value = 1;
 
         public BackgroundController()
         {

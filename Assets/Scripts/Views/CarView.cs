@@ -1,16 +1,35 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Actions;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
     public class CarView : MonoBehaviour
     {
         [SerializeField] private HingeJoint2D[] _wheels;
+        private SubscriptionObserver<float> _speedObserver;
+
+        public void Init(SubscriptionObserver<float> speedObserver)
+        {
+            _speedObserver = speedObserver;
+            _speedObserver.SubscribeObserver(ChangeSpeed);
+        }
+
+        private void OnDestroy()
+        {
+            if (_speedObserver != null)
+            {
+                _speedObserver.UnSubscribeObserver(ChangeSpeed);
+                _speedObserver = null;
+            }
+        }
 
         public void ChangeSpeed(float speed)
         {
             foreach (var wheel in _wheels)
             {
-                //wheel.
+                var motor = wheel.motor;
+                motor.motorSpeed = speed;
+                wheel.motor = motor;
             }
         }
     }
