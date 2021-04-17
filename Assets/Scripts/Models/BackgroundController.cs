@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -38,6 +39,25 @@ namespace Assets.Scripts.Interfaces
         public void ChangeSpeed(float value)
         {
             _value = value;
+        }
+
+        public bool AddBackGround(Background background)
+        {
+            var bg = _backgrounds.FirstOrDefault(x => x == background);
+            if (bg != null)
+            {
+                return false;
+            }
+
+            var oldBgs = _backgrounds;
+            _backgrounds = new Background[oldBgs.Length + 1];
+            for (int i = 0; i < oldBgs.Length; i++)
+            {
+                _backgrounds[i] = oldBgs[i];
+            }
+
+            _backgrounds[oldBgs.Length] = background;
+            return true;
         }
     }
 }
