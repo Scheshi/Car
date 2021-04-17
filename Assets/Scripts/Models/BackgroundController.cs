@@ -57,6 +57,7 @@ namespace Assets.Scripts.Interfaces
             }
 
             _backgrounds[oldBgs.Length] = background;
+            AddGameObject(background.gameObject);
             return true;
         }
     }
