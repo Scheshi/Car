@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _heightPerUnit: 5
-  _startPositionHeight: -4
+  _startPositionHeight: -5
   _widthPerUnit: 400
   _groundPrefab: {fileID: 1999191513015353937, guid: e357440b6fdadb54b99a79c832f3ca6f, type: 3}
   _dirtPrefab: {fileID: 3877782115999185541, guid: 8365d936689cb304583cfd5b82414ee0, type: 3}
   _trianglePrefab: {fileID: 2034664719852089438, guid: c941516370ce2d045af1c5670b9eb8ce, type: 3}
-  _percentFill: 90
+  _percentFill: 80
