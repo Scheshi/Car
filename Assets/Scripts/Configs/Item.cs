@@ -6,5 +6,6 @@ namespace Assets.Scripts.Configs
     {
         public int Id;
         public string Name;
+        public Sprite Sprite;
     }
 }

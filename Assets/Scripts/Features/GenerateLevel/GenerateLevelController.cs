@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Actions;
 using Assets.Scripts.BackGround;
 using Assets.Scripts.Controllers;
-using Assets.Scripts.Interfaces;
 using UnityEngine;
 using Random = System.Random;
 
@@ -110,6 +109,7 @@ namespace Assets.Scripts.GenerateLevel
                 }
             }
             var bg = Background.CreateBackground(ground, 0.08f, -16.9f, 16.9f - _view.Width);
+            AddGameObject(bg.gameObject);
             _completeObserver.Value = _background.AddBackGround(bg);
         }
     }

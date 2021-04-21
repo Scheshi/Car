@@ -6,6 +6,6 @@ namespace Assets.Scripts.Configs
     [CreateAssetMenu(menuName = "Configs/Item Container")]
     public class ItemContainer : ScriptableObject
     {
-        public List<Item> Items;
+        public List<UsableItem> Items;
     }
 }

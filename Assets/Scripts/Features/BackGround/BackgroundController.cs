@@ -12,18 +12,18 @@ namespace Assets.Scripts.BackGround
         private Background[] _backgrounds;
         private float _value = 1;
 
-        public BackgroundController()
-        {
-            LoadBackgrounds();
-            GameUpdater.Instance.Add(Execute);
-        }
-
         private void Execute()
         {
             for (int i = 0; i < _backgrounds.Length; i++)
             {
                 _backgrounds[i].Move(_value);
             }
+        }
+
+        public void Init()
+        {
+            LoadBackgrounds();
+            GameUpdater.Instance.Add(Execute);
         }
 
         private void LoadBackgrounds()

@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Actions;
 using Assets.Scripts.BackGround;
+using Assets.Scripts.Configs;
 using Assets.Scripts.Enums;
+using Assets.Scripts.Features.Inventory;
 using Assets.Scripts.GenerateLevel;
 using Assets.Scripts.Inputer;
 using Assets.Scripts.MainMenu;
@@ -19,6 +22,8 @@ namespace Assets.Scripts.Controllers
         private SubscriptionObserver<float> _rightMove;
         private SubscriptionObserver<float> _leftMove;
         private CarController _carController;
+        private GenerateLevelController _generateLevel;
+        private GarageController _garage;
 
         public MainController(PlayerProfile profile, Transform placeUI)
         {
@@ -34,6 +39,13 @@ namespace Assets.Scripts.Controllers
             var menuController = new MainMenuController(placeUI, _profile);
             AddController(menuController);
             _profile.ObserverStateGame.SubscribeObserver(OnChangeValue);
+            _backgroundController = new BackgroundController();
+            AddController(_backgroundController);
+            _generateLevel =
+                new GenerateLevelController(new SubscriptionObserver<bool>(), _backgroundController);
+            AddController(_generateLevel);
+            _garage = GarageConstruct(placeUI);
+
         }
         
         private void OnChangeValue(StateGame state)
@@ -42,24 +54,26 @@ namespace Assets.Scripts.Controllers
             {
                 case StateGame.Game:
                     _profile.Analytic.SendMessage("start_game", new Dictionary<string, object>());
-                    _backgroundController = new BackgroundController();
-                    AddController(_backgroundController);
+                    _backgroundController.Init();
                     _rightMove.SubscribeObserver(_backgroundController.ChangeSpeed);
                     _rightMove.SubscribeObserver(_carController.Move);
                     _input.Init(_leftMove, _rightMove, _profile.Car);
-                    var generateLevel =
-                        new GenerateLevelController(new SubscriptionObserver<bool>(), _backgroundController);
-                    AddController(generateLevel);
-                    generateLevel.Init();
-                
-
+                    _generateLevel.Init();
                     break;
                 case StateGame.Menu:
                     _backgroundController?.Dispose();
-                    _backgroundController = null;
                     _input.Dispose();
+                    _generateLevel.Dispose();
                     break;
             }
+        }
+
+        private GarageController GarageConstruct(Transform placeUI)
+        {
+            var itemContainer = Resources.Load<ItemContainer>("Configs/TestContainer");
+            var inventory = new InventoryController(itemContainer.Items, placeUI);
+
+            return new GarageController(inventory);
         }
         
     }
