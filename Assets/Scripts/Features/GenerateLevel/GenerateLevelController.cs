@@ -53,11 +53,10 @@ namespace Assets.Scripts.GenerateLevel
                     {
                         if (_levelCurrent[x, y] == 1)
                         {
-                            if (y - 1 > 0 && _levelCurrent[x, y - 1] == 0) _levelCurrent[x, y] = 0;
+                            if ((y - 1 > 0 && _levelCurrent[x, y - 1] == 0) || (x - 1 > 0 && x + 1 < _view.Width && _levelCurrent[x - 1, y] == 0 && _levelCurrent[x + 1, y] == 0)) _levelCurrent[x, y] = 0;
                             else if (x - 1 > 0 && y - 1 > 0 && _levelCurrent[x - 1, y - 1] == 0)
                             {
                                 _levelCurrent[x, y] = 0;
-                                
                             }
                             else
                             {
