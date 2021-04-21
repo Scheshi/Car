@@ -38,7 +38,6 @@ namespace Assets.Scripts.Inputer
 
         private BaseInputView LoadView()
         {
-            Debug.Log(_switch[_currentInput]);
             SetPathToPrefab(_switch[_currentInput]);
             return LoadView<BaseInputView>();
         }

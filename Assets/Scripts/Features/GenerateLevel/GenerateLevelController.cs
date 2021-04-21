@@ -55,7 +55,24 @@ namespace Assets.Scripts.GenerateLevel
                         {
                             if (y - 1 > 0 && _levelCurrent[x, y - 1] == 0) _levelCurrent[x, y] = 0;
                             else if (x - 1 > 0 && y - 1 > 0 && _levelCurrent[x - 1, y - 1] == 0)
+                            {
                                 _levelCurrent[x, y] = 0;
+                                
+                            }
+                            else
+                            {
+                                for (int i = 0; i < y; i++)
+                                {
+                                    _levelCurrent[x, i] = 2;
+                                }
+
+                                if (x - 1 > 0 && y - 1 > 0 && _levelCurrent[x - 1, y - 1] == 1)
+                                {
+                                    _levelCurrent[x - 1, y - 1] = 3;
+                                    _levelCurrent[x, y] = 3;
+                                }
+
+                            }
                         }
                     }
                     catch
@@ -79,6 +96,17 @@ namespace Assets.Scripts.GenerateLevel
                         var go = Object.Instantiate(_view.GroundPrefab, new Vector3(x, _view.StartPositionHeight + y, 0), Quaternion.identity, ground.transform);
                         go.layer = LayerMask.NameToLayer("Ground");
                         go.AddComponent<BoxCollider2D>().size = new Vector2(1.0f, 1.0f);
+                    }
+                    else if (_levelCurrent[x, y] == 2)
+                    {
+                        var go = Object.Instantiate(_view.DirtPrefab, new Vector3(x, _view.StartPositionHeight + y, 0), Quaternion.identity, ground.transform);
+                        go.layer = LayerMask.NameToLayer("Ground");
+                        go.AddComponent<BoxCollider2D>().size = new Vector2(1.0f, 1.0f);
+                    }
+                    else if (_levelCurrent[x, y] == 3)
+                    {
+                        var go = Object.Instantiate(_view.TrianglePrefab, new Vector3(x, _view.StartPositionHeight + y, 0), Quaternion.identity, ground.transform);
+                        go.layer = LayerMask.NameToLayer("Ground");
                     }
                 }
             }

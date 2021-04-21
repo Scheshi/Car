@@ -35,8 +35,6 @@ namespace Assets.Scripts.Controllers
         {
             if (!String.IsNullOrEmpty(_pathToPrefab))
             {
-                Debug.Log(typeof(T));
-                Debug.Log(_pathToPrefab);
                 var view = UnityEngine.Object.Instantiate(Resources.Load<T>(_pathToPrefab));
                 AddGameObject(view.gameObject);
                 return view;
