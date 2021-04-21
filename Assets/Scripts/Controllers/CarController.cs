@@ -1,9 +1,7 @@
 ﻿using Assets.Scripts.Enums;
-using UnityEngine;
-using Object = UnityEngine.Object;
 
 
-namespace Assets.Scripts.Interfaces
+namespace Assets.Scripts.Controllers
 {
     public class CarController : BaseController
     {
@@ -21,11 +19,6 @@ namespace Assets.Scripts.Interfaces
             _view.ChangeSpeed(_model.Moving(value));
         }
 
-        private CarView LoadView()
-        {
-            return Object.Instantiate(Resources.Load<CarView>(_pathToPrefab));
-        }
-
         public void ChangeState(StateGame state)
         {
             switch (state)
@@ -34,8 +27,8 @@ namespace Assets.Scripts.Interfaces
                     Dispose();
                     break;
                 case StateGame.Game:
-                    _view = LoadView();
-                    AddGameObject(_view.gameObject);
+                    SetPathToPrefab(_pathToPrefab);
+                    _view = LoadView<CarView>();
                     break;
             }
         }

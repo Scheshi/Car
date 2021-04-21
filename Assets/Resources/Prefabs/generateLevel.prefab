@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2934968640032372803
+--- !u!1 &6490125228476837522
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2996449618911492365}
-  - component: {fileID: 2521173754682497157}
+  - component: {fileID: 5733525557478613326}
+  - component: {fileID: 6276639387653853681}
   m_Layer: 0
-  m_Name: gyroscopeMove
+  m_Name: generateLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2996449618911492365
+--- !u!4 &5733525557478613326
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2934968640032372803}
+  m_GameObject: {fileID: 6490125228476837522}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5886332, y: -0.43741047, z: -8.389287}
+  m_LocalPosition: {x: -0.9060563, y: 1.4220605, z: -0.7843905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2521173754682497157
+--- !u!114 &6276639387653853681
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2934968640032372803}
+  m_GameObject: {fileID: 6490125228476837522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e04deb5f3ce101649a7be17739ae8476, type: 3}
+  m_Script: {fileID: 11500000, guid: 103318a7f970a72429dac37daf33ff71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _heightPerUnit: 5
+  _startPositionHeight: -4
+  _widthPerUnit: 400
+  _groundPrefab: {fileID: 1999191513015353937, guid: e357440b6fdadb54b99a79c832f3ca6f, type: 3}
+  _percentFill: 90
