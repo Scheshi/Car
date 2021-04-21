@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.Configs;
 using Assets.Scripts.Controllers;
 using UnityEngine;
@@ -11,21 +12,13 @@ namespace Assets.Scripts.Features.Inventory
         private string _pathToPrefab = "Prefabs/Inventory";
         private IInventoryModel _model;
         private IInventoryView _view;
-        
-        
+        public UsableItem CurrentSelectedItem { get; private set; }
+
+
         public InventoryController(List<UsableItem> items, Transform uiTransform)
         {
             _model = new InventoryModel(items);
             _view = LoadView(uiTransform);
-            _view.Init(() =>
-            {
-                if (_view.IsHide)
-                {
-                    Show();
-                }
-                else Hide();
-            });
-            _view.Build(_model.Items.List);
             Hide();
         }
 
@@ -41,11 +34,25 @@ namespace Assets.Scripts.Features.Inventory
             _model = model;
             SetPathToPrefab(_pathToPrefab);
             _view = LoadView(uiTransform);
-            _view.Build(_model.Items.List);
             Hide();
         }
 
-        public void Init() => _model.Items.SubscribeObserver(_view.Build);
+        public void Init()
+        {
+            _model.Items.SubscribeObserver(_view.Build);
+            _view.Init(SetCurrentSelectedItem, UnsetCurrentSelectedItem);
+            _view.Build(_model.Items.List);
+        }
+
+        private void SetCurrentSelectedItem(UsableItem item) => CurrentSelectedItem = item;
+
+        private void UnsetCurrentSelectedItem(UsableItem item)
+        {
+            if (CurrentSelectedItem == item)
+            {
+                CurrentSelectedItem = null;
+            }
+        }
 
         public void Show() => _view.Show();
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Scripts.Configs;
+using Assets.Scripts.Services;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,17 +10,31 @@ namespace Assets.Scripts.Features.Inventory
 {
     public class InventoryView : MonoBehaviour, IInventoryView
     {
-        private EventHandler<Item> Selected;
-        private EventHandler<Item> Deselected;
-        [SerializeField] private GameObject _cellPrefab;
+        private EventHandler<UsableItem> Selected;
+        private EventHandler<UsableItem> Deselected;
+        [SerializeField] private Slot _cellPrefab;
         [SerializeField] private Button _button;
         [SerializeField] private Transform _content;
         private bool _isHide;
-        public bool IsHide => _isHide;
 
-        public void Init(Action action)
+        public void Init(Action<UsableItem> onSelected, Action<UsableItem> onDeselected)
         {
-            _button.onClick.AddListener(action.Invoke);
+            _button.onClick.AddListener(() =>
+            {
+                if(_isHide)
+                    Show();
+                else Hide(); 
+            });
+            Selected += delegate(object sender, UsableItem item)
+            {
+                onSelected.Invoke(item);
+                Debug.Log("OnSelected" + item.Name);
+            };
+            Deselected += delegate(object sender, UsableItem item)
+            {
+                onDeselected.Invoke(item);
+                Debug.Log("OnDeselected" + item.Name);
+            };
         }
 
         public void Deinit()
@@ -45,8 +60,19 @@ namespace Assets.Scripts.Features.Inventory
             }
             for (int i = 0; i < items.Count; i++)
             {
-                _content.GetChild(i).GetComponent<Image>().sprite = items[i].Sprite;
+                var i1 = i;
+                _content.GetChild(i).GetComponent<Slot>().SetSlot(items[i].Sprite, items[i].Name, () =>
+                {
+                   Selected.Invoke(this, items[i1]);
+                });
             }
+        }
+
+        private void OnDestroy()
+        {
+            _button.onClick.RemoveAllListeners();
+            Selected = null;
+            Deselected = null;
         }
 
         public void Show()

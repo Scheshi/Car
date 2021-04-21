@@ -1,15 +1,35 @@
 ﻿using System;
 using Assets.Scripts.Actions;
+using Assets.Scripts.Enums;
+using Assets.Scripts.Features.Garage;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class Car
+    public class Car : IUpgradableCar
     {
-        public float Speed { get; }
+        private float _defaultSpeed;
+        public float Speed { get; private set; }
+        public void Restore()
+        {
+            Speed = _defaultSpeed;
+        }
+
+        public void Upgrade(UpgradableType type, float incrementPoint)
+        {
+            switch (type)
+            {
+               case UpgradableType.Speed:
+                   Restore();
+                   Speed += incrementPoint;
+                   break;
+            }
+        }
 
         public Car(float speed)
         {
-            Speed = speed;
+            _defaultSpeed = speed;
+            Restore();
         }
 
         public float Moving(float rightMove)

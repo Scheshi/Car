@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b6f0ffe95596e4dbc7f090fec8cc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellPrefab: {fileID: 6591353743559328170, guid: cf5d87cd2cca446468452b3cc36872ea, type: 3}
+  _cellPrefab: {fileID: 0}
   _button: {fileID: 0}
   _content: {fileID: 0}
 --- !u!1 &4715696852020078857
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b6f0ffe95596e4dbc7f090fec8cc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellPrefab: {fileID: 6591353743559328170, guid: cf5d87cd2cca446468452b3cc36872ea, type: 3}
+  _cellPrefab: {fileID: 1713152405987238883, guid: cf5d87cd2cca446468452b3cc36872ea, type: 3}
   _button: {fileID: 8197460293084499456}
   _content: {fileID: 8806529046716540641}
 --- !u!1 &5045059502625355098

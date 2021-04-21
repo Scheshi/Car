@@ -7,8 +7,7 @@ namespace Assets.Scripts.Features.Inventory
 {
     public interface IInventoryView
     {
-        bool IsHide { get; }
-        void Init(Action action);
+        void Init(Action<UsableItem> onSelected, Action<UsableItem> onDeselected);
         void Deinit();
         void Build(List<UsableItem> items);
         void Show();
@@ -24,6 +23,7 @@ namespace Assets.Scripts.Features.Inventory
 
     public interface IInventoryController
     {
+        UsableItem CurrentSelectedItem { get; }
         void Init();
         void Show();
         void Hide();
