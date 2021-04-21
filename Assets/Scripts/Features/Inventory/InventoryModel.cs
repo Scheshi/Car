@@ -4,7 +4,7 @@ using Assets.Scripts.Configs;
 
 namespace Assets.Scripts.Features.Inventory
 {
-    public class InventoryModel
+    public class InventoryModel : IInventoryModel
     {
         public SubscriptionListObserver<UsableItem> Items { get; }
         public InventoryModel(List<UsableItem> items)

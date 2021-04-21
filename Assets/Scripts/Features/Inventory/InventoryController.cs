@@ -6,11 +6,11 @@ using Object = System.Object;
 
 namespace Assets.Scripts.Features.Inventory
 {
-    public class InventoryController : BaseController
+    public class InventoryController : BaseController, IInventoryController
     {
         private string _pathToPrefab = "Prefabs/Inventory";
-        private InventoryModel _model;
-        private InventoryView _view;
+        private IInventoryModel _model;
+        private IInventoryView _view;
         
         
         public InventoryController(List<UsableItem> items, Transform uiTransform)
@@ -36,7 +36,7 @@ namespace Assets.Scripts.Features.Inventory
             return view;
         }
         
-        public InventoryController(InventoryModel model, Transform uiTransform)
+        public InventoryController(IInventoryModel model, Transform uiTransform)
         {
             _model = model;
             SetPathToPrefab(_pathToPrefab);

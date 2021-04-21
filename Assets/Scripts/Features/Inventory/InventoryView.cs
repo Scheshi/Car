@@ -7,8 +7,10 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Features.Inventory
 {
-    public class InventoryView : MonoBehaviour
+    public class InventoryView : MonoBehaviour, IInventoryView
     {
+        private EventHandler<Item> Selected;
+        private EventHandler<Item> Deselected;
         [SerializeField] private GameObject _cellPrefab;
         [SerializeField] private Button _button;
         [SerializeField] private Transform _content;
@@ -24,7 +26,7 @@ namespace Assets.Scripts.Features.Inventory
         {
             _button.onClick.RemoveAllListeners();
         }
-        
+
         public void Build(List<UsableItem> items)
         {
             if (_content.childCount > items.Count)

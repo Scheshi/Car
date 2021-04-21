@@ -4,11 +4,10 @@ namespace Assets.Scripts.Controllers
 {
     public class GarageController : BaseController
     {
-        private InventoryController _inventory;
-        public GarageController(InventoryController inventory)
+        private IInventoryController _inventory;
+        public GarageController(IInventoryController inventory)
         {
             _inventory = inventory;
-            AddController(inventory);
         }
 
 
