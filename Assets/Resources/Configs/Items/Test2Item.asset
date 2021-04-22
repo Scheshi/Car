@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50060c447b86d1c45aa8c73e8ab5f22a, type: 3}
-  m_Name: TestItem
+  m_Name: New Usable Item
   m_EditorClassIdentifier: 
-  Id: 1
-  Name: Turbo
-  Sprite: {fileID: 21300000, guid: f55383a92659a864c945bfa81659f9f0, type: 3}
-  UpgradeType: 1
-  IncrementCount: 5
+  Id: 0
+  Name: 
+  Sprite: {fileID: 0}
+  UpgradeType: 0
+  IncrementCount: 0

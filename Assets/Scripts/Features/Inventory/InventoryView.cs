@@ -13,18 +13,11 @@ namespace Assets.Scripts.Features.Inventory
         private EventHandler<UsableItem> Selected;
         private EventHandler<UsableItem> Deselected;
         [SerializeField] private Slot _cellPrefab;
-        [SerializeField] private Button _button;
         [SerializeField] private Transform _content;
         private bool _isHide;
 
         public void Init(Action<UsableItem> onSelected, Action<UsableItem> onDeselected)
         {
-            _button.onClick.AddListener(() =>
-            {
-                if(_isHide)
-                    Show();
-                else Hide(); 
-            });
             Selected += delegate(object sender, UsableItem item)
             {
                 onSelected.Invoke(item);
@@ -35,11 +28,12 @@ namespace Assets.Scripts.Features.Inventory
                 onDeselected.Invoke(item);
                 Debug.Log("OnDeselected" + item.Name);
             };
+            Show();
         }
 
         public void Deinit()
         {
-            _button.onClick.RemoveAllListeners();
+            Hide();
         }
 
         public void Build(List<UsableItem> items)
@@ -70,7 +64,6 @@ namespace Assets.Scripts.Features.Inventory
 
         private void OnDestroy()
         {
-            _button.onClick.RemoveAllListeners();
             Selected = null;
             Deselected = null;
         }

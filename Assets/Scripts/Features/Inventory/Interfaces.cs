@@ -25,6 +25,7 @@ namespace Assets.Scripts.Features.Inventory
     {
         UsableItem CurrentSelectedItem { get; }
         void Init();
+        void Deinit();
         void Show();
         void Hide();
     }

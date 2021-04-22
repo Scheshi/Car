@@ -4,6 +4,7 @@ using Assets.Scripts.Actions;
 using Assets.Scripts.BackGround;
 using Assets.Scripts.Configs;
 using Assets.Scripts.Enums;
+using Assets.Scripts.Features.Garage;
 using Assets.Scripts.Features.Inventory;
 using Assets.Scripts.GenerateLevel;
 using Assets.Scripts.Inputer;
@@ -44,7 +45,7 @@ namespace Assets.Scripts.Controllers
             _generateLevel =
                 new GenerateLevelController(new SubscriptionObserver<bool>(), _backgroundController);
             AddController(_generateLevel);
-            _garage = GarageConstruct(placeUI);
+            _garage = GarageConstruct(placeUI, _profile.Car);
 
         }
         
@@ -59,21 +60,29 @@ namespace Assets.Scripts.Controllers
                     _rightMove.SubscribeObserver(_carController.Move);
                     _input.Init(_leftMove, _rightMove, _profile.Car);
                     _generateLevel.Init();
+                    _garage.Deinit();
+                    _garage.Dispose();
                     break;
                 case StateGame.Menu:
                     _backgroundController?.Dispose();
                     _input.Dispose();
                     _generateLevel.Dispose();
                     break;
+                case StateGame.Garage:
+                    _backgroundController?.Dispose();
+                    _input.Dispose();
+                    _generateLevel.Dispose();
+                    _garage.Init();
+                    break;
             }
         }
 
-        private GarageController GarageConstruct(Transform placeUI)
+        private GarageController GarageConstruct(Transform placeUI, IUpgradableCar car)
         {
             var itemContainer = Resources.Load<ItemContainer>("Configs/TestContainer");
             var inventory = new InventoryController(itemContainer.Items, placeUI);
 
-            return new GarageController(inventory);
+            return new GarageController(inventory, placeUI, car);
         }
         
     }

@@ -16,7 +16,7 @@ namespace Assets.Scripts.MainMenu
         {
             _profile = playerProfile;
             _view = LoadView(UITransform);
-            _view.Init(StartGame, ChooseInput);
+            _view.Init(StartGame, OpenGarage, ChooseInput);
         }
 
         private MainMenuView LoadView(Transform UITransform)
@@ -33,6 +33,11 @@ namespace Assets.Scripts.MainMenu
         private void ChooseInput(int value)
         {
             _profile.ObserverInput.Value = (InputChoose) value;
+        }
+
+        private void OpenGarage()
+        {
+            _profile.ObserverStateGame.Value = StateGame.Garage;
         }
     }
 }

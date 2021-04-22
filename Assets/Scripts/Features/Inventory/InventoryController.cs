@@ -42,6 +42,14 @@ namespace Assets.Scripts.Features.Inventory
             _model.Items.SubscribeObserver(_view.Build);
             _view.Init(SetCurrentSelectedItem, UnsetCurrentSelectedItem);
             _view.Build(_model.Items.List);
+            Show();
+        }
+
+        public void Deinit()
+        {
+            _model.Items.UnSubscribeObserver(_view.Build);
+            _view.Deinit();
+            Hide();
         }
 
         private void SetCurrentSelectedItem(UsableItem item) => CurrentSelectedItem = item;

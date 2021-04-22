@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd8c2e97f2e8d648bf53a2b5bbc0ad8, type: 3}
   m_Name: TestContainer
   m_EditorClassIdentifier: 
-  Items: []
+  Items:
+  - {fileID: 11400000, guid: 84decedd810fc294daf8802c214823cb, type: 2}

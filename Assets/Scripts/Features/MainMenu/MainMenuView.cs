@@ -7,11 +7,12 @@ namespace Assets.Scripts.MainMenu
     public class MainMenuView : MonoBehaviour
     {
         [SerializeField] private Button _buttonStart;
+        [SerializeField] private Button _buttonGarage;
         [SerializeField] private Dropdown _dropdownChooseInput;
         [SerializeField] private TrailRenderer _trailRenderer;
         private Camera _camera;
 
-        public void Init(Action actionStartGame, Action<int> chooseInput)
+        public void Init(Action actionStartGame, Action actionGarage, Action<int> chooseInput)
         {
             _camera = Camera.main;
             _buttonStart.onClick.AddListener(() =>
@@ -19,6 +20,12 @@ namespace Assets.Scripts.MainMenu
                 actionStartGame.Invoke();
                 gameObject.SetActive(false);
             });
+            
+            _buttonGarage.onClick.AddListener(() =>
+                {
+                    actionGarage.Invoke();
+                    gameObject.SetActive(false);
+                });
             _dropdownChooseInput.onValueChanged.AddListener(chooseInput.Invoke);
 
             GameUpdater.Instance.Add(TrailTouch);
@@ -26,9 +33,7 @@ namespace Assets.Scripts.MainMenu
         protected void OnDestroy()
         {
             _buttonStart.onClick.RemoveAllListeners();
-#if UNITY_ANDROID || UNITY_IOS
             GameUpdater.Instance.Remove(TrailTouch);
-#endif
         }
 
         protected void TrailTouch()
