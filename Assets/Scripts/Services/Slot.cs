@@ -17,6 +17,11 @@ namespace Assets.Scripts.Services
             _button.onClick.AddListener(action.Invoke);
         }
 
+        public void SetInteractiveButton(bool isInteractive)
+        {
+            _button.interactable = isInteractive;
+        }
+
         private void OnDestroy()
         {
             _button.onClick.RemoveAllListeners();

@@ -15,11 +15,11 @@ E:/MyProjects/UnityProjects/CarAnime
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-59431
+64429
 Successfully changed project path to: E:/MyProjects/UnityProjects/CarAnime
 E:/MyProjects/UnityProjects/CarAnime
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 47.30 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 48.38 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.3f1 (76626098c1c4)
 [Subsystems] Discovering subsystems at path E:/MyProg/Unity/UnityEditors/2020.3.3f1/Editor/Data/Resources/UnitySubsystems
@@ -35,91 +35,51 @@ Initialize mono
 Mono path[0] = 'E:/MyProg/Unity/UnityEditors/2020.3.3f1/Editor/Data/Managed'
 Mono path[1] = 'E:/MyProg/Unity/UnityEditors/2020.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'E:/MyProg/Unity/UnityEditors/2020.3.3f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56672
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56192
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: E:/MyProg/Unity/UnityEditors/2020.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: E:/MyProg/Unity/UnityEditors/2020.3.3f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.001706 seconds.
+Registered in 0.001989 seconds.
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 47.70 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 46.04 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.167 seconds
+- Completed reload, in  2.171 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001136 seconds.
+Registered in 0.001027 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 45.57 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 46.65 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.123 seconds
+- Completed reload, in  1.087 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.46 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1857 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1858 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 86.4 MB.
 System memory in use after: 86.3 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 2302.
-Total: 3.168400 ms (FindLiveObjects: 0.355500 ms CreateObjectMapping: 0.057500 ms MarkObjects: 2.575100 ms  DeleteObjects: 0.178900 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 2303.
+Total: 2.443500 ms (FindLiveObjects: 0.254500 ms CreateObjectMapping: 0.053500 ms MarkObjects: 1.969800 ms  DeleteObjects: 0.164400 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Scripts/Features
-  artifactKey: Guid(7a758dfd2285dbb468467d2fc9bdbd84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Features using Guid(7a758dfd2285dbb468467d2fc9bdbd84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b80c25a251bdcc7dd5e6727f47f3c5ae') in 0.027465 seconds
-  Import took 0.031229 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000331 seconds.
-  path: Assets/Scripts/Features/Garage
-  artifactKey: Guid(79baebc285075df44806e46b1a4ca43a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Features/Garage using Guid(79baebc285075df44806e46b1a4ca43a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2567218435771e9fced28d556e1e67d') in 0.007230 seconds
-  Import took 0.010400 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000307 seconds.
-  path: Assets/Scripts/Profile
-  artifactKey: Guid(26fe5a32ae0963d4d96d15593c37444c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Profile using Guid(26fe5a32ae0963d4d96d15593c37444c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48df162bdd2e07811bcb8f04fe57a69b') in 0.007758 seconds
-  Import took 0.073478 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.864674 seconds.
-  path: Assets/Scripts/Controllers/CarController.cs
-  artifactKey: Guid(9eaba8e6c1ce0dc4e893230d4b6ee385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Controllers/CarController.cs using Guid(9eaba8e6c1ce0dc4e893230d4b6ee385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d1d5535403c968ab46552a7b9160041') in 0.100119 seconds
-  Import took 0.105534 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.889085 seconds.
-  path: Assets/Scripts/Controllers/GarageController.cs
-  artifactKey: Guid(5e2109f28394ce345903563410617d84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Controllers/GarageController.cs using Guid(5e2109f28394ce345903563410617d84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c7a5b099afa81baa1e1d89f49b94097') in 0.008259 seconds
-  Import took 0.012097 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000359 seconds.
-  path: Assets/Scripts/Controllers/GarageController.cs
-  artifactKey: Guid(5e2109f28394ce345903563410617d84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Controllers/GarageController.cs using Guid(5e2109f28394ce345903563410617d84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c7a5b099afa81baa1e1d89f49b94097') in 0.002495 seconds
-  Import took 0.005544 seconds .
+  path: Assets/Scripts/Features/Garage/GarageController.cs
+  artifactKey: Guid(2cbee2217c80f1244a6c1eb674c397d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Features/Garage/GarageController.cs using Guid(2cbee2217c80f1244a6c1eb674c397d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c36a6a38d0fcaa8a36dfca20fdb43a19') in 0.364666 seconds
+  Import took 0.368073 seconds .
 

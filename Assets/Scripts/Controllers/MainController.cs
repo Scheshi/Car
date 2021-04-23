@@ -4,6 +4,7 @@ using Assets.Scripts.Actions;
 using Assets.Scripts.BackGround;
 using Assets.Scripts.Configs;
 using Assets.Scripts.Enums;
+using Assets.Scripts.Features.Abilities;
 using Assets.Scripts.Features.Garage;
 using Assets.Scripts.Features.Inventory;
 using Assets.Scripts.GenerateLevel;
@@ -25,6 +26,7 @@ namespace Assets.Scripts.Controllers
         private CarController _carController;
         private GenerateLevelController _generateLevel;
         private GarageController _garage;
+        private AbilitiesController _abilities;
 
         public MainController(PlayerProfile profile, Transform placeUI)
         {
@@ -46,6 +48,7 @@ namespace Assets.Scripts.Controllers
                 new GenerateLevelController(new SubscriptionObserver<bool>(), _backgroundController);
             AddController(_generateLevel);
             _garage = GarageConstruct(placeUI, _profile.Car);
+            _abilities = new AbilitiesController(Resources.Load<AbilityContainer>("Configs/Abilities"), placeUI);
 
         }
         
@@ -62,6 +65,7 @@ namespace Assets.Scripts.Controllers
                     _generateLevel.Init();
                     _garage.Deinit();
                     _garage.Dispose();
+                    _abilities.Init();
                     break;
                 case StateGame.Menu:
                     _backgroundController?.Dispose();
