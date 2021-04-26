@@ -24,7 +24,7 @@ namespace Assets.Scripts.Features.Inventory
 
         private InventoryView LoadView(Transform uiTransform)
         {
-            var view = UnityEngine.Object.Instantiate(Resources.Load<InventoryView>(_pathToPrefab), uiTransform);
+            var view = LoadView<InventoryView>(_pathToPrefab, uiTransform);
             AddGameObject(view.gameObject);
             return view;
         }
@@ -32,8 +32,7 @@ namespace Assets.Scripts.Features.Inventory
         public InventoryController(IInventoryModel model, Transform uiTransform)
         {
             _model = model;
-            SetPathToPrefab(_pathToPrefab);
-            _view = LoadView(uiTransform);
+            _view = LoadView<InventoryView>(_pathToPrefab, uiTransform);
             Hide();
         }
 

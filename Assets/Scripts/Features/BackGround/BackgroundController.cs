@@ -9,7 +9,7 @@ namespace Assets.Scripts.BackGround
     public class BackgroundController : BaseController
     {
         private string _pathToPrefabs = "Prefabs/Backgrounds";
-        private Background[] _backgrounds;
+        private IBackground[] _backgrounds;
         private float _value = 1;
 
         private void Execute()
@@ -29,11 +29,13 @@ namespace Assets.Scripts.BackGround
         private void LoadBackgrounds()
         {
             var background = Resources.LoadAll<Background>(_pathToPrefabs);
-            _backgrounds = new Background[background.Length];
+            _backgrounds = new IBackground[background.Length];
             for (int i = 0; i < _backgrounds.Length; i++)
             {
-                _backgrounds[i] = Object.Instantiate(background[i]);
-                AddGameObject(_backgrounds[i].gameObject);
+                var bg = Object.Instantiate(background[i]);
+                
+                AddGameObject(bg.gameObject);
+                _backgrounds[i] = bg;
             }
         }
 
@@ -42,7 +44,7 @@ namespace Assets.Scripts.BackGround
             _value = value;
         }
 
-        public bool AddBackGround(Background background)
+        public bool AddBackGround(IBackground background)
         {
             var bg = _backgrounds.FirstOrDefault(x => x == background);
             if (bg != null)
@@ -51,14 +53,13 @@ namespace Assets.Scripts.BackGround
             }
 
             var oldBgs = _backgrounds;
-            _backgrounds = new Background[oldBgs.Length + 1];
+            _backgrounds = new IBackground[oldBgs.Length + 1];
             for (int i = 0; i < oldBgs.Length; i++)
             {
                 _backgrounds[i] = oldBgs[i];
             }
 
             _backgrounds[oldBgs.Length] = background;
-            AddGameObject(background.gameObject);
             return true;
         }
     }

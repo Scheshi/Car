@@ -38,8 +38,7 @@ namespace Assets.Scripts.Inputer
 
         private BaseInputView LoadView()
         {
-            SetPathToPrefab(_switch[_currentInput]);
-            return LoadView<BaseInputView>();
+            return LoadView<BaseInputView>(_switch[_currentInput]);
         }
 
         public void ChangeCurrentInput(InputChoose input)

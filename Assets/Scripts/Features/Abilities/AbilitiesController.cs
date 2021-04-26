@@ -12,7 +12,7 @@ namespace Assets.Scripts.Features.Abilities
         public AbilitiesController(AbilityContainer container, Transform uiPlace)
         {
             _model = new AbilitiesModel(container.Abilities);
-            _view = LoadView(uiPlace);
+            _view = LoadView<AbilitiesView>(_pathToPrefab, uiPlace);
             AddGameObject(_view.gameObject);
             _view.gameObject.SetActive(false);
         }
@@ -21,11 +21,6 @@ namespace Assets.Scripts.Features.Abilities
         {
             _view.gameObject.SetActive(true);
             _view.Init(_model.Abilities, _model.ApplyAbility);
-        }
-
-        private AbilitiesView LoadView(Transform uiTransform)
-        {
-            return Object.Instantiate(Resources.Load<AbilitiesView>(_pathToPrefab), uiTransform);
         }
     }
 }

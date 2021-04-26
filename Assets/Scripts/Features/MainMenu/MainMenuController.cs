@@ -15,14 +15,8 @@ namespace Assets.Scripts.MainMenu
         public MainMenuController(Transform UITransform, PlayerProfile playerProfile)
         {
             _profile = playerProfile;
-            _view = LoadView(UITransform);
+            _view = LoadView<MainMenuView>(_pathToView, UITransform);
             _view.Init(StartGame, OpenGarage, ChooseInput);
-        }
-
-        private MainMenuView LoadView(Transform UITransform)
-        {
-            return UnityEngine.Object.
-                Instantiate(Resources.Load<MainMenuView>(_pathToView), UITransform);
         }
 
         private void StartGame()

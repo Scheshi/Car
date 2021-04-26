@@ -15,17 +15,10 @@ namespace Assets.Scripts.Controllers
         public GarageController(IInventoryController inventory, Transform placeUI, IUpgradableCar car)
         {
             _inventory = inventory;
-            _view = LoadView(placeUI);
+            _view = LoadView<GarageView>(_pathToPrefab, placeUI);
             _view.Init(() => UpgradeCar(car));
             _view.gameObject.SetActive(false);
         }
-
-        private GarageView LoadView(Transform placeUI)
-        {
-            return Object.Instantiate(Resources.Load<GarageView>(_pathToPrefab), placeUI);
-        }
-        
-        
 
         public void Init()
         {

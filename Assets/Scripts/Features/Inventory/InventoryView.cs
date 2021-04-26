@@ -14,7 +14,6 @@ namespace Assets.Scripts.Features.Inventory
         private EventHandler<UsableItem> Deselected;
         [SerializeField] private Slot _cellPrefab;
         [SerializeField] private Transform _content;
-        private bool _isHide;
 
         public void Init(Action<UsableItem> onSelected, Action<UsableItem> onDeselected)
         {
@@ -71,12 +70,10 @@ namespace Assets.Scripts.Features.Inventory
         public void Show()
         {
             _content.gameObject.SetActive(true);
-            _isHide = false;
         }
 
         public void Hide()
         {
-            _isHide = true;
             _content.gameObject.SetActive(false);
         }
     }

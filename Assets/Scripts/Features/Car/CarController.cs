@@ -27,8 +27,7 @@ namespace Assets.Scripts.Controllers
                     Dispose();
                     break;
                 case StateGame.Game:
-                    SetPathToPrefab(_pathToPrefab);
-                    _view = LoadView<CarView>();
+                    _view = LoadView<CarView>(_pathToPrefab);
                     break;
             }
         }

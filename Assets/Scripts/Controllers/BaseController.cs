@@ -9,8 +9,7 @@ namespace Assets.Scripts.Controllers
     {
         private readonly List<BaseController> _controllers = new List<BaseController>();
         private readonly List<GameObject> _views = new List<GameObject>();
-        private string _pathToPrefab = String.Empty;
-        
+
         public virtual void Dispose()
         {
             for (int i = 0; i < _controllers.Count; i++)
@@ -25,17 +24,24 @@ namespace Assets.Scripts.Controllers
             }
             _views.Clear();
         }
-
-        protected void SetPathToPrefab(string path)
-        {
-            _pathToPrefab = path;
-        }
         
-        protected T LoadView<T>() where T: Component
+        
+        protected T LoadView<T>(string path) where T: Component
         {
-            if (!String.IsNullOrEmpty(_pathToPrefab))
+            if (!String.IsNullOrEmpty(path))
             {
-                var view = UnityEngine.Object.Instantiate(Resources.Load<T>(_pathToPrefab));
+                var view = UnityEngine.Object.Instantiate(Resources.Load<T>(path));
+                AddGameObject(view.gameObject);
+                return view;
+            }
+            return null;
+        }
+
+        protected T LoadView<T>(string path, Transform parent) where T : Component
+        {
+            if (!String.IsNullOrEmpty(path))
+            {
+                var view = UnityEngine.Object.Instantiate(Resources.Load<T>(path), parent);
                 AddGameObject(view.gameObject);
                 return view;
             }

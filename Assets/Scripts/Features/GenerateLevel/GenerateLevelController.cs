@@ -1,15 +1,16 @@
 ﻿using Assets.Scripts.Actions;
 using Assets.Scripts.BackGround;
 using Assets.Scripts.Controllers;
+using Assets.Scripts.Features.GenerateLevel;
 using UnityEngine;
 using Random = System.Random;
 
 namespace Assets.Scripts.GenerateLevel
 {
-    public class GenerateLevelController : BaseController
+    public class GenerateLevelController : BaseController, IGenerateLevelController
     {
         private string _pathToPrefab = "Prefabs/generateLevel";
-        private GenerateLevelView _view;
+        private IGenerateLevelView _view;
         private SubscriptionObserver<bool> _completeObserver;
         private BackgroundController _background;
         private int[,] _levelCurrent;
@@ -18,8 +19,7 @@ namespace Assets.Scripts.GenerateLevel
 
         public GenerateLevelController(SubscriptionObserver<bool> completeObserver, BackgroundController backgroundController)
         {
-            SetPathToPrefab(_pathToPrefab);
-            _view = LoadView<GenerateLevelView>();
+            _view = LoadView<GenerateLevelView>(_pathToPrefab);
             _completeObserver = completeObserver;
             _background = backgroundController;
         }

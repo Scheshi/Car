@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.BackGround
 {
-    public class Background : MonoBehaviour
+    public class Background : MonoBehaviour, IBackground
     {
         [SerializeField] private float _speed;
         [SerializeField] private float _rightBorder;

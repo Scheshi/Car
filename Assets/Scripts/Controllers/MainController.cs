@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Assets.Scripts.Actions;
 using Assets.Scripts.BackGround;
 using Assets.Scripts.Configs;
@@ -18,38 +17,32 @@ namespace Assets.Scripts.Controllers
 {
     public class MainController : BaseController
     {
+        private readonly PlayerProfile _profile;
         private BackgroundController _backgroundController;
         private InputController _input;
-        private PlayerProfile _profile;
         private SubscriptionObserver<float> _rightMove;
         private SubscriptionObserver<float> _leftMove;
         private CarController _carController;
         private GenerateLevelController _generateLevel;
         private GarageController _garage;
         private AbilitiesController _abilities;
-
-        public MainController(PlayerProfile profile, Transform placeUI)
+        
+        public MainController(PlayerProfile profile, Transform placeUi)
         {
             _profile = profile;
-            _carController = new CarController(_profile.Car);
-            AddController(_carController);
-            _leftMove = new SubscriptionObserver<float>();
-            _rightMove = new SubscriptionObserver<float>();
-            _input = new InputController(_profile.ObserverInput);
-            AddController(_input);
-            _profile.ObserverInput.SubscribeObserver(_input.ChangeCurrentInput);
-            _profile.ObserverStateGame.SubscribeObserver(_carController.ChangeState);
-            var menuController = new MainMenuController(placeUI, _profile);
-            AddController(menuController);
-            _profile.ObserverStateGame.SubscribeObserver(OnChangeValue);
-            _backgroundController = new BackgroundController();
-            AddController(_backgroundController);
-            _generateLevel =
-                new GenerateLevelController(new SubscriptionObserver<bool>(), _backgroundController);
-            AddController(_generateLevel);
-            _garage = GarageConstruct(placeUI, _profile.Car);
-            _abilities = new AbilitiesController(Resources.Load<AbilityContainer>("Configs/Abilities"), placeUI);
+            Init(profile, placeUi);
+        }
 
+        private void Init(PlayerProfile profile, Transform placeUi)
+        {
+            _carController = CarConstruct(profile);
+            _input = InputConstruct(profile);
+            _garage = GarageConstruct(placeUi, _profile.Car);
+            var menuController = MenuConstruct(profile, placeUi);
+            _profile.ObserverStateGame.SubscribeObserver(OnChangeValue);
+            _backgroundController = BackgroundConstruct();
+            _generateLevel = GenerateLevelConstruct();
+            _abilities = AbilitiesConstruct(placeUi);
         }
         
         private void OnChangeValue(StateGame state)
@@ -81,6 +74,54 @@ namespace Assets.Scripts.Controllers
             }
         }
 
+        #region Generates Depencity
+        
+        private AbilitiesController AbilitiesConstruct(Transform ui)
+        {
+           var controller = new AbilitiesController(Resources.Load<AbilityContainer>("Configs/Abilities"), ui);
+            AddController(controller);
+            return controller;
+        }
+        
+        private GenerateLevelController GenerateLevelConstruct()
+        {
+            var controller = new GenerateLevelController(new SubscriptionObserver<bool>(), _backgroundController);
+            AddController(_generateLevel);
+            return controller;
+        }
+        
+        private BackgroundController BackgroundConstruct()
+        {
+            var controller = new BackgroundController();
+            AddController(_backgroundController);
+            return controller;
+        }
+
+        private MainMenuController MenuConstruct(PlayerProfile profile, Transform ui)
+        {
+            var menuController = new MainMenuController(ui, profile);
+            AddController(menuController);
+            return menuController;
+        }
+        
+        private CarController CarConstruct(PlayerProfile profile)
+        {
+            var controller = new CarController(profile.Car);
+            AddController(controller);
+            profile.ObserverStateGame.SubscribeObserver(controller.ChangeState);
+            return controller;
+        }
+
+        private InputController InputConstruct(PlayerProfile profile)
+        {
+            _leftMove = new SubscriptionObserver<float>();
+            _rightMove = new SubscriptionObserver<float>();
+            var input = new InputController(profile.ObserverInput);
+            AddController(input);
+            profile.ObserverInput.SubscribeObserver(_input.ChangeCurrentInput);
+            return input;
+        }
+        
         private GarageController GarageConstruct(Transform placeUI, IUpgradableCar car)
         {
             var itemContainer = Resources.Load<ItemContainer>("Configs/TestContainer");
@@ -88,6 +129,8 @@ namespace Assets.Scripts.Controllers
 
             return new GarageController(inventory, placeUI, car);
         }
+        
+        #endregion
         
     }
 }
