@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Enums;
+using UnityEngine;
 
 
 namespace Assets.Scripts.Controllers
@@ -8,6 +9,7 @@ namespace Assets.Scripts.Controllers
         private string _pathToPrefab = "Prefabs/car";
         private Car _model;
         private CarView _view;
+        public GameObject CarObject => _view.gameObject;
 
         public CarController(Car model)
         {

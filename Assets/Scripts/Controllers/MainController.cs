@@ -4,6 +4,7 @@ using Assets.Scripts.BackGround;
 using Assets.Scripts.Configs;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Features.Abilities;
+using Assets.Scripts.Features.Battle;
 using Assets.Scripts.Features.Inventory;
 using Assets.Scripts.GenerateLevel;
 using Assets.Scripts.Inputer;
@@ -28,6 +29,7 @@ namespace Assets.Scripts.Controllers
         private GarageController _garage;
         private AbilitiesController _abilities;
         private MainMenuController _menu;
+        private BattleController _battle;
         private Transform _placeUI;
         private Button _backToMenuButton;
         
@@ -52,6 +54,12 @@ namespace Assets.Scripts.Controllers
         {
             switch (state)
             {
+                case StateGame.Battle:
+                    _garage?.Dispose();
+                    _menu?.Dispose();
+                    _battle = BattleConstruct(_profile);
+                    _battle.Init(_placeUI, 200.0f);
+                    break;
                 case StateGame.Game:
                     _profile.Analytic.SendMessage("start_game", new Dictionary<string, object>());
                     _backgroundController = BackgroundConstruct();
@@ -79,6 +87,7 @@ namespace Assets.Scripts.Controllers
                     _generateLevel?.Dispose();
                     _garage?.Dispose();
                     _abilities?.Dispose();
+                    _battle?.Dispose();
                     if (_backToMenuButton != null)
                     {
                         _backToMenuButton.onClick.RemoveAllListeners();
@@ -97,6 +106,13 @@ namespace Assets.Scripts.Controllers
         }
 
         #region Generates Depencity
+
+        private BattleController BattleConstruct(PlayerProfile profile)
+        {
+            var controller = new BattleController(profile);
+            AddController(controller);
+            return controller;
+        }
         
         private AbilitiesController AbilitiesConstruct(Transform ui)
         {

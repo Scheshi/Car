@@ -9,24 +9,19 @@ namespace Assets.Scripts.Features.Battle
         [SerializeField] private Button _startBattle;
         [SerializeField] private Button _backToMenu;
         [SerializeField] private Text _speedText;
-        [SerializeField] private Transform _positionForCreateEnemy;
-        private GameObject _enemyObject;
+        [SerializeField] private Image _positionForCreateEnemy;
+        private Image _enemyObject;
 
-        public void Init(Action startBattle, Action backToMenu, GameObject carEnemy, float speed)
+        public void Init(Action startBattle, Action backToMenu, Sprite carEnemy, float speed)
         {
             _startBattle.onClick.AddListener(startBattle.Invoke);
             _backToMenu.onClick.AddListener(backToMenu.Invoke);
-            _enemyObject = Instantiate(carEnemy, _positionForCreateEnemy);
+            _positionForCreateEnemy.sprite = carEnemy;
             _speedText.text = "Speed: " + speed;
-            if (_enemyObject.TryGetComponent<Rigidbody2D>(out var rigidbody2D))
-            {
-                rigidbody2D.gravityScale = 0.0f;
-            }
         }
 
         private void OnDestroy()
         {
-            Destroy(_enemyObject.gameObject);
             _startBattle.onClick.RemoveAllListeners();
             _backToMenu.onClick.RemoveAllListeners();
         }
