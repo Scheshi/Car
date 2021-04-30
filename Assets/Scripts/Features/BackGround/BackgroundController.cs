@@ -26,6 +26,12 @@ namespace Assets.Scripts.BackGround
             GameUpdater.Instance.Add(Execute);
         }
 
+        public override void Dispose()
+        {
+            GameUpdater.Instance.Remove(Execute);
+            base.Dispose();
+        }
+
         private void LoadBackgrounds()
         {
             var background = Resources.LoadAll<Background>(_pathToPrefabs);

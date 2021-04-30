@@ -8,11 +8,12 @@ namespace Assets.Scripts.MainMenu
     {
         [SerializeField] private Button _buttonStart;
         [SerializeField] private Button _buttonGarage;
+        [SerializeField] private Button _buttonBattle;
         [SerializeField] private Dropdown _dropdownChooseInput;
         [SerializeField] private TrailRenderer _trailRenderer;
         private Camera _camera;
 
-        public void Init(Action actionStartGame, Action actionGarage, Action<int> chooseInput)
+        public void Init(Action actionStartGame, Action actionGarage, Action<int> chooseInput, Action actionBattle)
         {
             _camera = Camera.main;
             _buttonStart.onClick.AddListener(() =>
@@ -20,6 +21,8 @@ namespace Assets.Scripts.MainMenu
                 actionStartGame.Invoke();
                 gameObject.SetActive(false);
             });
+            
+            _buttonBattle.onClick.AddListener(actionBattle.Invoke);
             
             _buttonGarage.onClick.AddListener(() =>
                 {

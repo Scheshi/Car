@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.Scripts.Actions;
 using Assets.Scripts.Configs;
+using UnityEngine;
 
 namespace Assets.Scripts.Features.Inventory
 {
@@ -24,9 +25,7 @@ namespace Assets.Scripts.Features.Inventory
     public interface IInventoryController
     {
         UsableItem CurrentSelectedItem { get; }
-        void Init();
+        void Init(Transform ui);
         void Deinit();
-        void Show();
-        void Hide();
     }
 }

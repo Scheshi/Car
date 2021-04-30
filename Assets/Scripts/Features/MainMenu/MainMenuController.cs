@@ -12,11 +12,20 @@ namespace Assets.Scripts.MainMenu
         private MainMenuView _view;
         private PlayerProfile _profile;
 
-        public MainMenuController(Transform UITransform, PlayerProfile playerProfile)
+        public MainMenuController(PlayerProfile playerProfile)
         {
             _profile = playerProfile;
+        }
+        
+        public void Init(Transform UITransform)
+        {
             _view = LoadView<MainMenuView>(_pathToView, UITransform);
-            _view.Init(StartGame, OpenGarage, ChooseInput);
+            _view.Init(StartGame, OpenGarage, ChooseInput, StartBattle);
+        }
+
+        private void StartBattle()
+        {
+            _profile.ObserverStateGame.Value = StateGame.Battle;
         }
 
         private void StartGame()

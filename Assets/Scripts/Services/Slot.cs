@@ -17,6 +17,12 @@ namespace Assets.Scripts.Services
             _button.onClick.AddListener(action.Invoke);
         }
 
+        public void Selected(bool isSelected)
+        {
+            if (isSelected) _image.color = Color.gray;
+            else _image.color = Color.white;
+        }
+
         public void SetInteractiveButton(bool isInteractive)
         {
             _button.interactable = isInteractive;

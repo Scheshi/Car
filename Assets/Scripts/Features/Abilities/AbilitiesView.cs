@@ -59,10 +59,13 @@ namespace Assets.Scripts.Features.Abilities
 
         private void OnDestroy()
         {
-            for (int i = 0; i < _currentAbilitiesSlot.Count; i++)
+            if (_currentAbilitiesSlot != null && _currentAbilitiesSlot.Count > 0)
             {
-                Destroy(_currentAbilitiesSlot[i].gameObject);
-                i--;
+                for (int i = 0; i < _currentAbilitiesSlot.Count; i++)
+                {
+                    Destroy(_currentAbilitiesSlot[i].gameObject);
+                    i--;
+                }
             }
         }
     }

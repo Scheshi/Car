@@ -9,17 +9,14 @@ namespace Assets.Scripts.Features.Abilities
         private string _pathToPrefab = "Prefabs/Abilities";
         private AbilitiesModel _model;
         private AbilitiesView _view;
-        public AbilitiesController(AbilityContainer container, Transform uiPlace)
+        public AbilitiesController(AbilityContainer container)
         {
             _model = new AbilitiesModel(container.Abilities);
-            _view = LoadView<AbilitiesView>(_pathToPrefab, uiPlace);
-            AddGameObject(_view.gameObject);
-            _view.gameObject.SetActive(false);
         }
 
-        public void Init()
+        public void Init(Transform uiPlace)
         {
-            _view.gameObject.SetActive(true);
+            _view = LoadView<AbilitiesView>(_pathToPrefab, uiPlace);
             _view.Init(_model.Abilities, _model.ApplyAbility);
         }
     }

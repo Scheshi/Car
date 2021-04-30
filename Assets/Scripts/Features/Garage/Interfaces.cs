@@ -12,7 +12,7 @@ namespace Assets.Scripts.Features.Garage
 
     public interface IUpgradableCarHandler
     {
-        public IUpgradableCar CurrentCar { get; }
+        //public IUpgradableCar CurrentCar { get; }
         IUpgradableCar UpgradeCar(IUpgradableCar car);
     }
 }

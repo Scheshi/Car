@@ -196,7 +196,7 @@ HingeJoint2D:
   m_ConnectedAnchor: {x: -0.009999974, y: -0.2300001}
   m_UseMotor: 1
   m_Motor:
-    m_MotorSpeed: 30
+    m_MotorSpeed: 162.3
     m_MaximumMotorForce: 10000
   m_UseLimits: 0
   m_AngleLimits:
@@ -300,7 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5482850969277423818}
   - component: {fileID: 7472759615959054332}
-  - component: {fileID: 3287211560307840657}
+  - component: {fileID: 246112036338930732}
   m_Layer: 0
   m_Name: car
   m_TagString: Untagged
@@ -344,7 +344,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!114 &3287211560307840657
+--- !u!114 &246112036338930732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4932083621224645924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66242aa61fe8474429dbc5b8e7b88b83, type: 3}
+  m_Script: {fileID: 11500000, guid: be5ffa5b38978124380c3a31892cfd14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _wheels:
@@ -565,7 +565,7 @@ HingeJoint2D:
   m_ConnectedAnchor: {x: 0.019999878, y: -0.2000001}
   m_UseMotor: 1
   m_Motor:
-    m_MotorSpeed: 30
+    m_MotorSpeed: 140.68
     m_MaximumMotorForce: 10000
   m_UseLimits: 0
   m_AngleLimits:
