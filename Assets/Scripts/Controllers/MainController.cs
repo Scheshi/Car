@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.Actions;
 using Assets.Scripts.BackGround;
 using Assets.Scripts.Configs;
@@ -12,6 +13,7 @@ using Assets.Scripts.MainMenu;
 using Assets.Scripts.Profile;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 
 namespace Assets.Scripts.Controllers
@@ -32,9 +34,17 @@ namespace Assets.Scripts.Controllers
         private BattleController _battle;
         private Transform _placeUI;
         private Button _backToMenuButton;
+        private Dictionary<StateGame, Action> _states;
         
         public MainController(PlayerProfile profile, Transform placeUi)
         {
+            _states = new Dictionary<StateGame, Action>()
+            {
+                {StateGame.Battle, BattleState},
+                {StateGame.Game, GameState},
+                {StateGame.Garage, GarageState},
+                {StateGame.Menu, MenuState}
+            };
             _profile = profile;
             _placeUI = placeUi;
             Init(profile);
@@ -45,65 +55,80 @@ namespace Assets.Scripts.Controllers
             _rightMove = new SubscriptionObserver<float>();
             _leftMove = new SubscriptionObserver<float>();
             _carController = CarConstruct(profile);
-            _rightMove.SubscribeObserver(_carController.Move);
             profile.ObserverStateGame.SubscribeObserver(OnChangeValue);
             profile.ObserverStateGame.Value = StateGame.Menu;
+            _input = InputConstruct(_profile);
         }
         
         private void OnChangeValue(StateGame state)
         {
-            switch (state)
+            _states[state].Invoke();
+        }
+
+        #region GameState
+
+        private void BattleState()
+        {
+            _garage?.Dispose();
+            _menu?.Dispose();
+            _battle = BattleConstruct(_profile);
+            _battle.Init(_placeUI);
+        }
+
+        private void GameState()
+        {
+            _profile.Analytic.SendMessage("start_game", new Dictionary<string, object>());
+            _backgroundController = BackgroundConstruct();
+            _backgroundController.Init();
+            _rightMove.SubscribeObserver(_backgroundController.ChangeSpeed);
+            _rightMove.SubscribeObserver(_carController.Move);
+            _generateLevel = GenerateLevelConstruct();
+            _generateLevel.Init();
+            _input.Init(_leftMove, _rightMove, _profile.Car);
+            _garage?.Dispose();
+            //_abilities = AbilitiesConstruct(_placeUI);
+            //_abilities.Init(_placeUI);
+            _menu?.Dispose();
+            _backToMenuButton = Object.Instantiate(Resources.Load<Button>(_pathToButton), _placeUI);
+            _backToMenuButton.onClick.AddListener(() =>
             {
-                case StateGame.Battle:
-                    _garage?.Dispose();
-                    _menu?.Dispose();
-                    _battle = BattleConstruct(_profile);
-                    _battle.Init(_placeUI, 200.0f);
-                    break;
-                case StateGame.Game:
-                    _profile.Analytic.SendMessage("start_game", new Dictionary<string, object>());
-                    _backgroundController = BackgroundConstruct();
-                    _backgroundController.Init();
-                    _rightMove.SubscribeObserver(_backgroundController.ChangeSpeed);
-                    _input = InputConstruct(_profile);
-                    _input.Init(_leftMove, _rightMove, _profile.Car);
-                    _generateLevel = GenerateLevelConstruct();
-                    _generateLevel.Init();
-                    _garage?.Dispose();
-                    _abilities = AbilitiesConstruct(_placeUI);
-                    _abilities.Init(_placeUI);
-                    _menu?.Dispose();
-                    _backToMenuButton = Object.Instantiate(Resources.Load<Button>(_pathToButton), _placeUI);
-                    _backToMenuButton.onClick.AddListener(() =>
-                    {
-                        _profile.ObserverStateGame.Value = StateGame.Menu;
-                    });
-                    break;
-                case StateGame.Menu:
-                    _menu = MenuConstruct(_profile);
-                    _menu.Init(_placeUI);
-                    _backgroundController?.Dispose();
-                    _input?.Dispose();
-                    _generateLevel?.Dispose();
-                    _garage?.Dispose();
-                    _abilities?.Dispose();
-                    _battle?.Dispose();
-                    if (_backToMenuButton != null)
-                    {
-                        _backToMenuButton.onClick.RemoveAllListeners();
-                        Object.Destroy(_backToMenuButton.gameObject);
-                    }
-                    break;
-                case StateGame.Garage:
-                    _backgroundController?.Dispose();
-                    _input?.Dispose();
-                    _generateLevel?.Dispose();
-                    _garage = GarageConstruct();
-                    _garage.Init(_profile, _placeUI);
-                    _menu?.Dispose();
-                    break;
+                _profile.ObserverStateGame.Value = StateGame.Menu;
+            });
+        }
+
+        private void GarageState()
+        {
+            _backgroundController?.Dispose();
+            _input?.Dispose();
+            _generateLevel?.Dispose();
+            _garage = GarageConstruct();
+            _garage.Init(_profile, _placeUI);
+            _menu?.Dispose();
+        }
+
+        private void MenuState()
+        {
+            if (_backgroundController != null)
+            {
+                _rightMove?.UnSubscribeObserver(_backgroundController.ChangeSpeed);
+            }
+            _rightMove?.UnSubscribeObserver(_carController.Move);
+            _menu = MenuConstruct(_profile);
+            _menu.Init(_placeUI);
+            _backgroundController?.Dispose();
+            _input?.Dispose();
+            _generateLevel?.Dispose();
+            _garage?.Dispose();
+            //_abilities?.Dispose();
+            _battle?.Dispose();
+            if (_backToMenuButton != null)
+            {
+                _backToMenuButton.onClick.RemoveAllListeners();
+                Object.Destroy(_backToMenuButton.gameObject);
             }
         }
+
+        #endregion
 
         #region Generates Depencity
 
@@ -130,7 +155,7 @@ namespace Assets.Scripts.Controllers
         
         private BackgroundController BackgroundConstruct()
         {
-            var controller = new BackgroundController();
+            var controller = new BackgroundController(_profile.Car.Speed);
             AddController(_backgroundController);
             return controller;
         }
@@ -156,7 +181,6 @@ namespace Assets.Scripts.Controllers
             _rightMove = new SubscriptionObserver<float>();
             var input = new InputController(profile.ObserverInput);
             AddController(input);
-            profile.ObserverInput.SubscribeObserver(input.ChangeCurrentInput);
             return input;
         }
         
@@ -164,8 +188,9 @@ namespace Assets.Scripts.Controllers
         {
             var itemContainer = Resources.Load<ItemContainer>("Configs/TestContainer");
             var inventory = new InventoryController(itemContainer.Items);
-
-            return new GarageController(inventory);
+            var garage = new GarageController(inventory);
+            AddController(garage);
+            return garage;
         }
         
         #endregion

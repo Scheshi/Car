@@ -11,12 +11,18 @@ namespace Assets.Scripts.BackGround
         private string _pathToPrefabs = "Prefabs/Backgrounds";
         private IBackground[] _backgrounds;
         private float _value = 1;
+        private float _speed;
 
+        public BackgroundController(float speed)
+        {
+            _speed = speed;
+        }
+        
         private void Execute()
         {
             for (int i = 0; i < _backgrounds.Length; i++)
             {
-                _backgrounds[i].Move(_value);
+                _backgrounds[i].Move(_value * _speed);
             }
         }
 
@@ -39,7 +45,7 @@ namespace Assets.Scripts.BackGround
             for (int i = 0; i < _backgrounds.Length; i++)
             {
                 var bg = Object.Instantiate(background[i]);
-                
+
                 AddGameObject(bg.gameObject);
                 _backgrounds[i] = bg;
             }

@@ -9,7 +9,7 @@ namespace Assets.Scripts.Controllers
         private string _pathToPrefab = "Prefabs/car";
         private Car _model;
         private CarView _view;
-        public GameObject CarObject => _view.gameObject;
+        public CarView CarObject => _view;
 
         public CarController(Car model)
         {
@@ -30,8 +30,20 @@ namespace Assets.Scripts.Controllers
                     break;
                 case StateGame.Game:
                     _view = LoadView<CarView>(_pathToPrefab);
+                    AddGameObject(_view.gameObject);
                     break;
             }
+        }
+
+        /// <summary>
+        /// If you need moving car object
+        /// </summary>
+        /// <param name="speed">speed of moving object</param>
+        public void ChangeSpeedCar(float speed)
+        {
+            var position = _view.gameObject.transform.position;
+            _view.gameObject.transform.position =
+                new Vector3(position.x + speed, position.y, position.z);
         }
         
         

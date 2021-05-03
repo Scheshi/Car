@@ -10,6 +10,7 @@ namespace Assets.Scripts
     {
         private float _defaultSpeed;
         public float Speed { get; private set; }
+        public float CurrentSpeed { get; private set; }
         public void Restore()
         {
             Speed = _defaultSpeed;
@@ -34,9 +35,10 @@ namespace Assets.Scripts
 
         public float Moving(float rightMove)
         {
-            if (rightMove > 0) return Speed; 
-            if (rightMove < 0) return -Speed;
-            return 0;
+            if (rightMove > 0) CurrentSpeed = Speed; 
+            if (rightMove < 0) CurrentSpeed = -Speed;
+            else CurrentSpeed = 0;
+            return CurrentSpeed;
         }
     }
 }

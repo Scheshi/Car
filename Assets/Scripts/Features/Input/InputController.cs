@@ -39,13 +39,5 @@ namespace Assets.Scripts.Inputer
         {
             _currentInput = input;
         }
-
-        public override void Dispose()
-        {
-            base.Dispose();
-            _chooseObserver.UnSubscribeObserver(ChangeCurrentInput);
-            _view = null;
-            _switch = null;
-        }
     }
 }
