@@ -3,7 +3,6 @@ using Assets.Scripts.Controllers;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Profile;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Background = Assets.Scripts.BackGround.Background;
 
 namespace Assets.Scripts.Features.Battle
@@ -35,7 +34,7 @@ namespace Assets.Scripts.Features.Battle
         {
             _enemies = new List<Enemy>()
             {
-                new Enemy(Resources.Load<Sprite>("Car/TruckChassisSprite"), 0.07f),
+                new Enemy(Resources.Load<Sprite>("Car/TruckChassisSprite"), 0.03f),
                 new Enemy(Resources.Load<Sprite>("Car/TruckChassisSprite"), 0.09f),
                 new Enemy(Resources.Load<Sprite>("Car/TruckChassisSprite"), 0.1f),
                 new Enemy(Resources.Load<Sprite>("Car/TruckChassisSprite"), 0.13f),
@@ -56,9 +55,11 @@ namespace Assets.Scripts.Features.Battle
             var carModel = new Car(_enemies[0].Speed);
             _currentEnemy = new CarController(carModel);
             _currentEnemy.ChangeState(StateGame.Game);
+            _currentEnemy.CarObject.gameObject.layer = LayerMask.NameToLayer("Enemy");
             AddController(_currentEnemy);
             _view.gameObject.SetActive(false);
             _finish = Object.Instantiate(Resources.Load<FinishTrigger>(_pathToFinishPrefab), new Vector3(_currentEnemy.CarObject.transform.position.x + 100, _currentEnemy.CarObject.transform.position.y, 0), Quaternion.identity, Object.FindObjectOfType<Background>().transform);
+            _finish.gameObject.layer = LayerMask.NameToLayer("Finish");
             AddGameObject(_finish.gameObject);
             _finish.Subscription(OnFinished);
             GameUpdater.Instance.Add(MoveEnemy);
@@ -74,8 +75,8 @@ namespace Assets.Scripts.Features.Battle
 
         private void OnFinished(bool isPlayer)
         {
-            if(isPlayer) Debug.Log("Вы проиграли!");
-            else Debug.Log("Вы выиграли!");
+            if(isPlayer) Debug.Log("Вы выйграли!");
+            else Debug.Log("Вы проиграли!");
             BackToMenu();
         }
 
