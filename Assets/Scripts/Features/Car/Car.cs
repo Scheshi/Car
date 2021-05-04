@@ -10,7 +10,10 @@ namespace Assets.Scripts
     {
         private float _defaultSpeed;
         public float Speed { get; private set; }
-        public float CurrentSpeed { get; private set; }
+
+        public SubscriptionObserver<float> CurrentSpeedObserver { get; private set; } =
+            new SubscriptionObserver<float>();
+        
         public void Restore()
         {
             Speed = _defaultSpeed;
@@ -35,10 +38,10 @@ namespace Assets.Scripts
 
         public float Moving(float rightMove)
         {
-            if (rightMove > 0) CurrentSpeed = Speed; 
-            if (rightMove < 0) CurrentSpeed = -Speed;
-            else CurrentSpeed = 0;
-            return CurrentSpeed;
+            if (rightMove > 0) CurrentSpeedObserver.Value = Speed; 
+            else if (rightMove < 0) CurrentSpeedObserver.Value = -Speed;
+            else CurrentSpeedObserver.Value = 0;
+            return CurrentSpeedObserver.Value;
         }
     }
 }

@@ -7,6 +7,8 @@ namespace Assets.Scripts
     {
         [SerializeField] private HingeJoint2D[] _wheels;
         private SubscriptionObserver<float> _speedObserver;
+        [SerializeField]private Rigidbody2D _rigidbody2D;
+        public Rigidbody2D Rigidbody => _rigidbody2D;
 
         public void Init(SubscriptionObserver<float> speedObserver)
         {

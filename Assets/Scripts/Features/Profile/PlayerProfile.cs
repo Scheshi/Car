@@ -11,10 +11,14 @@ namespace Assets.Scripts.Profile
 
         public SubscriptionObserver<InputChoose> ObserverInput { get; }
         
+        public SubscriptionObserver<int> WinCount { get; }
+        
         public IAnalytic Analytic { get; }
 
         public PlayerProfile(float speedCar, IAnalytic analytic)
         {
+            WinCount = new SubscriptionObserver<int>();
+            WinCount.Value = 0;
             Car = new Car(speedCar);
             ObserverStateGame = new SubscriptionObserver<StateGame>();
             ObserverInput = new SubscriptionObserver<InputChoose>();

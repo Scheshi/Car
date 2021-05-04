@@ -13,7 +13,7 @@ namespace Assets.Scripts.Features.Battle
             {
                 _onFinished.Invoke(false);
             }
-            else _onFinished.Invoke(false);
+            else _onFinished.Invoke(true);
         }
 
         public void Subscription(Action<bool> action)

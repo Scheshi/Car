@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Assets.Scripts.Controllers;
 using UnityEngine;
 using Object = UnityEngine.Object;
+
 
 namespace Assets.Scripts.BackGround
 {
@@ -10,7 +10,7 @@ namespace Assets.Scripts.BackGround
     {
         private string _pathToPrefabs = "Prefabs/Backgrounds";
         private IBackground[] _backgrounds;
-        private float _value = 1;
+        private float _value;
         private float _speed;
 
         public BackgroundController(float speed)

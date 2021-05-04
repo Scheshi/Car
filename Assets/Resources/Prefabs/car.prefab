@@ -169,7 +169,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 500
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -177,7 +177,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 1
+  m_Constraints: 0
 --- !u!233 &354507415526145761
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -299,7 +299,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5482850969277423818}
-  - component: {fileID: 7472759615959054332}
   - component: {fileID: 246112036338930732}
   m_Layer: 0
   m_Name: car
@@ -323,27 +322,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &7472759615959054332
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4932083621224645924}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 5000
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 7
 --- !u!114 &246112036338930732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +337,7 @@ MonoBehaviour:
   _wheels:
   - {fileID: 5008879205635002348}
   - {fileID: 354507415526145761}
+  _rigidbody2D: {fileID: 5986278758995997272}
 --- !u!1 &5793889489453473621
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +517,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 500
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -546,7 +525,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 1
+  m_Constraints: 0
 --- !u!233 &5008879205635002348
 HingeJoint2D:
   m_ObjectHideFlags: 0
