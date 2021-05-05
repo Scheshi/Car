@@ -38,7 +38,7 @@ namespace Assets.Scripts
 
         public float Moving(float rightMove)
         {
-            if (rightMove > 0) CurrentSpeedObserver.Value = Speed; 
+            if (rightMove > 0) CurrentSpeedObserver.Value = Speed;
             else if (rightMove < 0) CurrentSpeedObserver.Value = -Speed;
             else CurrentSpeedObserver.Value = 0;
             return CurrentSpeedObserver.Value;

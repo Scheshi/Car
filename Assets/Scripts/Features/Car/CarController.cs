@@ -41,7 +41,7 @@ namespace Assets.Scripts.Controllers
         /// <param name="speed">speed of moving object</param>
         public void ChangeSpeedCar(float speed)
         {
-            _view.Rigidbody.AddForce(new Vector2(speed * _view.Rigidbody.mass, 0), ForceMode2D.Impulse);
+            _view.Rigidbody.AddForce(new Vector2(speed * _view.Rigidbody.mass * 10, 0), ForceMode2D.Impulse);
         }
     }
 }

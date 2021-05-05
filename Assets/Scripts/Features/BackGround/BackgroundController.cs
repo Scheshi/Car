@@ -22,7 +22,7 @@ namespace Assets.Scripts.BackGround
         {
             for (int i = 0; i < _backgrounds.Length; i++)
             {
-                _backgrounds[i].Move(_value * _speed);
+                _backgrounds[i].Move(_value);
             }
         }
 
