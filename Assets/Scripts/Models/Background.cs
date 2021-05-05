@@ -21,5 +21,14 @@ namespace Assets.Scripts
                 transform.position = new Vector3(_leftBorder, position.y, position.z);
             }
         }
+
+        public static Background CreateBackground(GameObject gameObject, float speed, float rightBorder, float leftBorder)
+        {
+            var bg = gameObject.AddComponent<Background>();
+            bg._speed = speed;
+            bg._leftBorder = leftBorder;
+            bg._rightBorder = rightBorder;
+            return bg;
+        }
     }
 }

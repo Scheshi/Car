@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+using Assets.Scripts;
 using Assets.Scripts.Actions;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Profile;
+using Assets.Scripts.Services;
 using UnityEngine;
 
 
@@ -9,6 +12,7 @@ public class GameStarter : MonoBehaviour
 {
     [SerializeField] private Transform _placeUI;
     [SerializeField] private float _speedCar;
+    [SerializeField] private GenerateLevelView _generateLevel;
     private BackgroundController _backgroundController;
     private InputController _input;
     private PlayerProfile _profile;
@@ -18,7 +22,7 @@ public class GameStarter : MonoBehaviour
     void Start()
     {
         new GameObject("Updater").AddComponent<GameUpdater>();
-        _profile = new PlayerProfile(_speedCar);
+        _profile = new PlayerProfile(_speedCar, new UnityAnalytic());
         _carController = new CarController(_profile.Car);
         _leftMove = new SubscriptionObserver<float>();
         _rightMove = new SubscriptionObserver<float>();
@@ -34,8 +38,9 @@ public class GameStarter : MonoBehaviour
         switch (state)
         {
             case StateGame.Game:
-                
+                _profile.Analytic.SendMessage("start_game", new Dictionary<string, object>());
                 _backgroundController = new BackgroundController();
+                new GenerateLevelController(_generateLevel, new SubscriptionObserver<bool>(), _backgroundController).Init();
                 _rightMove.SubscribeObserver(_backgroundController.ChangeSpeed);
                 _rightMove.SubscribeObserver(_carController.Move);
                 _input.Init(_leftMove, _rightMove, _profile.Car);
