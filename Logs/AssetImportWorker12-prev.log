@@ -99,3 +99,28 @@ Received Import Request.
 Start importing Assets/Scripts/Features/GenerateLevel/GenerateLevelView.cs using Guid(103318a7f970a72429dac37daf33ff71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3bf46b231e86ab1286639b2e13fa022d') in 0.007163 seconds
   Import took 0.062068 seconds .
 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.073218 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.400 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1859 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.0 MB.
+System memory in use after: 86.1 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2324.
+Total: 380.252100 ms (FindLiveObjects: 233.480000 ms CreateObjectMapping: 0.162400 ms MarkObjects: 146.568600 ms  DeleteObjects: 0.037800 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
