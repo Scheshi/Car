@@ -9,11 +9,12 @@ namespace Assets.Scripts.MainMenu
         [SerializeField] private Button _buttonStart;
         [SerializeField] private Button _buttonGarage;
         [SerializeField] private Button _buttonBattle;
+        [SerializeField] private Button _buttonDailyRewards;
         [SerializeField] private Dropdown _dropdownChooseInput;
         [SerializeField] private TrailRenderer _trailRenderer;
         private Camera _camera;
 
-        public void Init(Action actionStartGame, Action actionGarage, Action<int> chooseInput, Action actionBattle)
+        public void Init(Action actionStartGame, Action actionGarage, Action<int> chooseInput, Action actionBattle, Action actionRewards)
         {
             _camera = Camera.main;
             _buttonStart.onClick.AddListener(() =>
@@ -30,12 +31,17 @@ namespace Assets.Scripts.MainMenu
                     gameObject.SetActive(false);
                 });
             _dropdownChooseInput.onValueChanged.AddListener(chooseInput.Invoke);
+            _buttonDailyRewards.onClick.AddListener(actionRewards.Invoke);
 
             GameUpdater.Instance.Add(TrailTouch);
         }
         protected void OnDestroy()
         {
+            _buttonGarage.onClick.RemoveAllListeners();
+            _buttonBattle.onClick.RemoveAllListeners();
             _buttonStart.onClick.RemoveAllListeners();
+            _dropdownChooseInput.onValueChanged.RemoveAllListeners();
+            _buttonDailyRewards.onClick.RemoveAllListeners();
             GameUpdater.Instance.Remove(TrailTouch);
         }
 

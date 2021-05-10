@@ -7,7 +7,7 @@ namespace Assets.Scripts.Features.Rewards
 {
     public class DailyRewardsController : BaseController
     {
-        private string _pathToPrefab;
+        private string _pathToPrefab = "Prefabs/Rewards";
         private DailyRewardsView _view;
         private PlayerProfile _profile;
 
