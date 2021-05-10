@@ -9,6 +9,8 @@ namespace Assets.Scripts.Features.Rewards
     {
         [SerializeField] private Transform _content;
         [SerializeField] private Button _backToMenuButton;
+        [SerializeField] private Text _coinsCount;
+        [SerializeField] private Text _diamondsCount;
 
         public void Init(Action<DailyType, int> onReward, Action onBackToMenu)
         {
@@ -19,6 +21,32 @@ namespace Assets.Scripts.Features.Rewards
                 {
                     rewardButton.Init(onReward);
                 }
+            }
+        }
+
+        public void AddReward(DailyType dailyType, int count)
+        {
+            switch (dailyType)
+            {
+                case DailyType.Coin:
+                    _coinsCount.text = (int.Parse(_coinsCount.text) + count).ToString();
+                    break;
+                case DailyType.Diamond:
+                    _diamondsCount.text = (int.Parse(_diamondsCount.text) + count).ToString();
+                    break;
+            }
+        }
+
+        public void SetReward(DailyType dailyType, int count)
+        {
+            switch (dailyType)
+            {
+                case DailyType.Coin:
+                    _coinsCount.text = count.ToString();
+                    break;
+                case DailyType.Diamond:
+                    _diamondsCount.text = count.ToString();
+                    break;
             }
         }
 
