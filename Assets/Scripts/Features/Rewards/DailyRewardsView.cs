@@ -11,17 +11,22 @@ namespace Assets.Scripts.Features.Rewards
         [SerializeField] private Button _backToMenuButton;
         [SerializeField] private Text _coinsCount;
         [SerializeField] private Text _diamondsCount;
+        [SerializeField] private Text _timeText;
+        [SerializeField] private Button _resetTimeButton;
+        [SerializeField] private RewardSlot[] _slots;
 
-        public void Init(Action<DailyType, int> onReward, Action onBackToMenu)
+        public void Init(Action<DailyType, int> onReward, Action onBackToMenu, Action onResetTime)
         {
             _backToMenuButton.onClick.AddListener(onBackToMenu.Invoke);
             if (_content.childCount > 0)
             {
-                foreach (var rewardButton in _content.GetComponentsInChildren<RewardSlot>())
+                _slots = _content.GetComponentsInChildren<RewardSlot>();
+                foreach (var rewardButton in _slots)
                 {
                     rewardButton.Init(onReward);
                 }
             }
+            _resetTimeButton.onClick.AddListener(onResetTime.Invoke);
         }
 
         public void AddReward(DailyType dailyType, int count)
@@ -50,9 +55,22 @@ namespace Assets.Scripts.Features.Rewards
             }
         }
 
+        public void ShowTime(TimeSpan date, int currentSlot)
+        {
+            foreach (var slot in _slots)
+            {
+                slot.SetInteractable(false);
+            }
+            var canInteract = date <= TimeSpan.Zero;
+            _timeText.text = !canInteract ? date.ToString("hh\\:mm\\:ss") : "Заберите свой приз!";
+            if (currentSlot >= _slots.Length) currentSlot %= _slots.Length;
+            _slots[currentSlot].SetInteractable(canInteract);
+        }
+
         private void OnDestroy()
         {
             _backToMenuButton.onClick.RemoveAllListeners();
+            _resetTimeButton.onClick.RemoveAllListeners();
         }
     }
 }

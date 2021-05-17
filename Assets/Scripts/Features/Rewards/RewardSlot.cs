@@ -27,5 +27,10 @@ namespace Assets.Scripts.Features.Rewards
         {
             _button.onClick.AddListener(() => onReward.Invoke(_reward, _count));
         }
+
+        public void SetInteractable(bool isInteractable)
+        {
+            _button.interactable = isInteractable;
+        }
     }
 }
