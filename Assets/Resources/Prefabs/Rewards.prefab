@@ -1293,6 +1293,7 @@ MonoBehaviour:
   _timeText: {fileID: 2665922455318615155}
   _resetTimeButton: {fileID: 1640173291434175324}
   _slots: []
+  _tween: {fileID: 11400000, guid: e40f0ad3b07890344a2acedb871aecce, type: 2}
 --- !u!1 &6314222103409553377
 GameObject:
   m_ObjectHideFlags: 0
