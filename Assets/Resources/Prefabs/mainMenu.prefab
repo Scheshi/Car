@@ -382,10 +382,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed2f0a560269f749b1101c02a93f697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointDownTween: {fileID: 11400000, guid: 021ff8931108932459e935971f051648, type: 2}
-  _pointUpTween: {fileID: 11400000, guid: 9f6ca2dfdae7f754c9a3731681eded48, type: 2}
-  _pointExitTween: {fileID: 11400000, guid: cb521f81f4c636948bce3166fdd41d8b, type: 2}
-  _pointEnterTween: {fileID: 11400000, guid: 021ff8931108932459e935971f051648, type: 2}
+  _pointDownTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointUpTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointExitTween: {fileID: 11400000, guid: 1650390dab5452f4a98d572d15920cae, type: 2}
+  _pointEnterTween: {fileID: 11400000, guid: 99e9837e06be1a54ca991294b40934d4, type: 2}
 --- !u!114 &154362306662766739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,10 +607,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed2f0a560269f749b1101c02a93f697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointDownTween: {fileID: 11400000, guid: 021ff8931108932459e935971f051648, type: 2}
-  _pointUpTween: {fileID: 11400000, guid: 9f6ca2dfdae7f754c9a3731681eded48, type: 2}
-  _pointExitTween: {fileID: 11400000, guid: cb521f81f4c636948bce3166fdd41d8b, type: 2}
-  _pointEnterTween: {fileID: 11400000, guid: 021ff8931108932459e935971f051648, type: 2}
+  _pointDownTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointUpTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointExitTween: {fileID: 11400000, guid: 1650390dab5452f4a98d572d15920cae, type: 2}
+  _pointEnterTween: {fileID: 11400000, guid: 99e9837e06be1a54ca991294b40934d4, type: 2}
 --- !u!114 &7345690046502908492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1463,10 +1463,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed2f0a560269f749b1101c02a93f697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointDownTween: {fileID: 11400000, guid: 021ff8931108932459e935971f051648, type: 2}
-  _pointUpTween: {fileID: 11400000, guid: 9f6ca2dfdae7f754c9a3731681eded48, type: 2}
-  _pointExitTween: {fileID: 11400000, guid: cb521f81f4c636948bce3166fdd41d8b, type: 2}
-  _pointEnterTween: {fileID: 11400000, guid: 021ff8931108932459e935971f051648, type: 2}
+  _pointDownTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointUpTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointExitTween: {fileID: 11400000, guid: 1650390dab5452f4a98d572d15920cae, type: 2}
+  _pointEnterTween: {fileID: 11400000, guid: 99e9837e06be1a54ca991294b40934d4, type: 2}
 --- !u!114 &5307027281856285941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1838,10 +1838,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed2f0a560269f749b1101c02a93f697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointDownTween: {fileID: 11400000, guid: 021ff8931108932459e935971f051648, type: 2}
-  _pointUpTween: {fileID: 11400000, guid: 9f6ca2dfdae7f754c9a3731681eded48, type: 2}
-  _pointExitTween: {fileID: 11400000, guid: cb521f81f4c636948bce3166fdd41d8b, type: 2}
-  _pointEnterTween: {fileID: 11400000, guid: 021ff8931108932459e935971f051648, type: 2}
+  _pointDownTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointUpTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointExitTween: {fileID: 11400000, guid: 1650390dab5452f4a98d572d15920cae, type: 2}
+  _pointEnterTween: {fileID: 11400000, guid: 99e9837e06be1a54ca991294b40934d4, type: 2}
 --- !u!114 &3835253644648826519
 MonoBehaviour:
   m_ObjectHideFlags: 0

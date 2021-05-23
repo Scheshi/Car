@@ -84,17 +84,7 @@ namespace Assets.Scripts.Features.Rewards
 
         private void StartTween(Transform currentTransform, Action onComplete)
         {
-            _sequence = DOTween.Sequence();
-            _sequence.Append(currentTransform.DOMove(currentTransform.position + _tween.MoveValue, _tween.Duration))
-                .SetLoops(_tween.CountLoops).SetEase(_tween.Ease);
-            _sequence.Append(currentTransform.DOScale(_tween.ScaleValue, _tween.Duration));
-            _sequence.Append(currentTransform.DOScale(1, _tween.Duration));
-            _sequence.Append(
-                currentTransform
-                    .DOMove(currentTransform.position, _tween.Duration)
-                    .SetLoops(_tween.CountLoops)
-                    .SetEase(_tween.Ease));
-            _sequence.Play().OnComplete(onComplete.Invoke);
+            _tween.DOAnimation(currentTransform, onComplete);
         }
 
         private void OnDestroy()

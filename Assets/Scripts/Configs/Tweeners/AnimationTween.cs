@@ -1,16 +1,11 @@
-﻿using DG.Tweening;
+﻿using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Configs.Tweeners
 {
-    [CreateAssetMenu(menuName =  "Configs/Tweeners/AnimationTween")]
-    public class AnimationTween : ScriptableObject
+    
+    public abstract class AnimationTween : ScriptableObject
     {
-        public Ease Ease;
-        public float Duration;
-        public Vector3 MoveValue;
-        public int CountLoops;
-        public float ScaleValue;
-
+        public abstract void DOAnimation(Transform transform, Action onComplete);
     }
 }
