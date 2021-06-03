@@ -3,7 +3,6 @@ using Assets.Scripts.Enums;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using Object = UnityEngine.Object;
 
 
 namespace Assets.Scripts.Controllers
@@ -13,6 +12,7 @@ namespace Assets.Scripts.Controllers
         private const string ADDRESSABLES_LABEL = "Car";
         private Car _model;
         private CarView _view;
+        private AsyncOperationHandle<GameObject> _handle;
         public CarView CarObject => _view;
 
         public CarController(Car model)
@@ -31,10 +31,17 @@ namespace Assets.Scripts.Controllers
             {
                 case StateGame.Menu:
                     Dispose();
+                    if (!_handle.Equals(default))
+                    {
+                        Addressables.Release(_handle);
+                    }
+
                     break;
                 case StateGame.Game:
                     Debug.Log("Game");
-                    Addressables.LoadAssetAsync<GameObject>(ADDRESSABLES_LABEL).Completed += OnCompleted;
+                    //Addressables.LoadAssetAsync<GameObject>(ADDRESSABLES_LABEL).Completed += OnCompleted;
+                    _handle = Addressables.InstantiateAsync(ADDRESSABLES_LABEL);
+                    _handle.Completed += OnCompleted;
                     break;
             }
         }
@@ -45,16 +52,14 @@ namespace Assets.Scripts.Controllers
             switch (obj.Status)
             {
                 case AsyncOperationStatus.Succeeded:
-                    _view = Object.Instantiate(obj.Result).GetComponent<CarView>();
+                    _view = obj.Result.GetComponent<CarView>();
                     AddGameObject(_view.gameObject);
                     break;
                 case AsyncOperationStatus.None:
                     throw new ArgumentException("Нет законченных операций");
-                    break;
                 case AsyncOperationStatus.Failed:
                     throw new ArgumentException("Загрузка префаба не смогла выполниться");
             }
-
         }
 
         /// <summary>

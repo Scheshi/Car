@@ -29,7 +29,6 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 3526776a7edc9dd4abeef1c5d73cf658, type: 2}
   - {fileID: 11400000, guid: f68307dc4cac32042b84a45d5c43fd1e, type: 2}
-  - {fileID: 11400000, guid: 4386775ba43207f4cbb3a0733fb8a389, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -71,6 +70,7 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - Car
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 2121abfd48bfc2e47957b88e5b4ec4fd, type: 2}
@@ -86,7 +86,32 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c29bbc3e0849db0449dca1739647d352, type: 2}
   m_ActiveProfileId: 10e7327d2efe9a442967d11a80e80f00
   m_HostingServicesManager:
-    m_HostingServiceInfos: []
+    m_HostingServiceInfos:
+    - classRef: UnityEditor.AddressableAssets.HostingServices.HttpHostingService,
+        Unity.Addressables.Editor
+      dataStore:
+        m_SerializedData:
+        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+          m_ClassName: System.Int32
+          m_Data: 80
+          m_Key: HostingServicePort
+        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+          m_ClassName: System.String
+          m_Data: ServerData/StandaloneWindows
+          m_Key: ContentRoot
+        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+          m_ClassName: System.Boolean
+          m_Data: False
+          m_Key: IsEnabled
+        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+          m_ClassName: System.String
+          m_Data: Local Hosting 0
+          m_Key: DescriptiveName
+        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+          m_ClassName: System.Int32
+          m_Data: 0
+          m_Key: InstanceId
     m_Settings: {fileID: 11400000}
-    m_NextInstanceId: 0
-    m_RegisteredServiceTypeRefs: []
+    m_NextInstanceId: 1
+    m_RegisteredServiceTypeRefs:
+    - UnityEditor.AddressableAssets.HostingServices.HttpHostingService, Unity.Addressables.Editor

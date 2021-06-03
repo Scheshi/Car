@@ -19,7 +19,7 @@ namespace Assets.Scripts.Features.Rewards
         [SerializeField] private RewardSlot[] _slots;
         [SerializeField] private AnimationTween _tween;
         private bool _isAnimate;
-        private Sequence _sequence;
+        //private Sequence _sequence;
 
         public void Init(Action<DailyType, int> onReward, Action onBackToMenu, Action onResetTime)
         {
@@ -77,7 +77,6 @@ namespace Assets.Scripts.Features.Rewards
                 StartTween(_slots[currentSlot].transform, () =>
                 {
                     _isAnimate = false;
-                    _sequence = null;
                 });
             }
         }

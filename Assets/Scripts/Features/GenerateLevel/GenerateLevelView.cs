@@ -3,6 +3,7 @@ using System.Collections;
 using Assets.Scripts.Features.GenerateLevel;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Assets.Scripts
 {
@@ -19,6 +20,7 @@ namespace Assets.Scripts
         private GameObject _groundPrefab;
         private GameObject _dirtPrefab;
         private GameObject _trianglePrefab;
+        private AsyncOperationHandle<GameObject>[] _operations;
         [SerializeField, Range(0, 100)] private int _percentFill;
 
         private void OnEnable()
@@ -37,7 +39,21 @@ namespace Assets.Scripts
             _trianglePrefab = triangleAsyncOperation.Result;
             _groundPrefab = triangleAsyncOperation.Result;
             _dirtPrefab = dirtAsyncOperation.Result;
+            _operations = new []
+            {
+                groundAsyncOperation,
+                dirtAsyncOperation,
+                triangleAsyncOperation
+            };
             OnComplete.Invoke();
+        }
+
+        private void OnDestroy()
+        {
+            for (int i = 0; i < _operations.Length; i++)
+            {
+                Addressables.Release(_operations[i]);
+            }
         }
 
         public int Height => _heightPerUnit;
