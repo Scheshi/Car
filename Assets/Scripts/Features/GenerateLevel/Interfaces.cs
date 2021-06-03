@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Features.GenerateLevel
 {
@@ -9,6 +10,8 @@ namespace Assets.Scripts.Features.GenerateLevel
 
     public interface IGenerateLevelView
     {
+        event Action OnComplete;
+        
         int Height { get; }
 
         int StartPositionHeight { get; }

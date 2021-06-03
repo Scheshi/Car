@@ -86,7 +86,7 @@ namespace Assets.Scripts.Controllers
             _profile.Car.CurrentSpeedObserver.SubscribeObserver(_backgroundController.ChangeSpeed);
             _rightMove.SubscribeObserver(_carController.Move);
             _generateLevel = GenerateLevelConstruct();
-            _generateLevel.Init();
+            //generateLevel.Init();
             _input.Init(_leftMove, _rightMove, _profile.Car);
             _garage?.Dispose();
             //_abilities = AbilitiesConstruct(_placeUI);
