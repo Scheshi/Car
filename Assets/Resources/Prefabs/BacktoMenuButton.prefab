@@ -90,7 +90,8 @@ GameObject:
   - component: {fileID: 8524821205089984873}
   - component: {fileID: 4822831490989795857}
   - component: {fileID: 5708294205928476592}
-  - component: {fileID: 1299811423136753896}
+  - component: {fileID: 2224846119599251635}
+  - component: {fileID: 1690098628529226286}
   m_Layer: 5
   m_Name: BacktoMenuButton
   m_TagString: Untagged
@@ -156,7 +157,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1299811423136753896
+--- !u!114 &2224846119599251635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,7 +166,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 6783956775634974362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: fed2f0a560269f749b1101c02a93f697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointDownTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointUpTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointExitTween: {fileID: 11400000, guid: 1650390dab5452f4a98d572d15920cae, type: 2}
+  _pointEnterTween: {fileID: 11400000, guid: 99e9837e06be1a54ca991294b40934d4, type: 2}
+--- !u!114 &1690098628529226286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6783956775634974362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cb08ae55d01234ca6b429fc30b4e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:

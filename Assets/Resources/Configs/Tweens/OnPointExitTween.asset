@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 566fe5765cb23dd4fa6b0de06e88ea70, type: 3}
-  m_Name: OnPointEnterTween
+  m_Name: OnPointExitTween
   m_EditorClassIdentifier: 
-  Ease: 0
-  Duration: 1.3
-  MoveValue: {x: 0, y: 0.3, z: 0}
-  CountLoops: 2
-  ScaleValue: 1.4
+  Ease: 18
+  Duration: 0.2
+  MoveValue: {x: 0, y: -0.3, z: 0}
+  CountLoops: 0
+  ScaleValue: 1

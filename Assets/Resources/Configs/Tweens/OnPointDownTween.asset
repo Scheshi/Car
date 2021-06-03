@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c03070700339ce4f9feb141a6560a36, type: 3}
-  m_Name: OnPointDown
+  m_Name: OnPointDownTween
   m_EditorClassIdentifier: 
-  Ease: 0
-  Duration: 0
-  MoveValue: {x: 0, y: 0, z: 0}
+  Ease: 18
+  Duration: 0.2
+  MoveValue: {x: 0, y: -0.3, z: 0}
   CountLoops: 0
-  ScaleValue: 0
+  ScaleValue: 0.8

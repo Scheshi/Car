@@ -716,7 +716,8 @@ GameObject:
   - component: {fileID: 7567773406927635143}
   - component: {fileID: 486900676183224519}
   - component: {fileID: 872795795601602456}
-  - component: {fileID: 6236527525299851491}
+  - component: {fileID: 2852318386002889861}
+  - component: {fileID: 527641980335753892}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -782,7 +783,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6236527525299851491
+--- !u!114 &2852318386002889861
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -791,7 +792,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1916284193532071524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: fed2f0a560269f749b1101c02a93f697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointDownTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointUpTween: {fileID: 11400000, guid: 84c1b2d5c81da9f46a46b90d2e324d57, type: 2}
+  _pointExitTween: {fileID: 11400000, guid: 1650390dab5452f4a98d572d15920cae, type: 2}
+  _pointEnterTween: {fileID: 11400000, guid: 99e9837e06be1a54ca991294b40934d4, type: 2}
+--- !u!114 &527641980335753892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916284193532071524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cb08ae55d01234ca6b429fc30b4e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1287,7 +1304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _content: {fileID: 3548232578480204889}
-  _backToMenuButton: {fileID: 6236527525299851491}
+  _backToMenuButton: {fileID: 527641980335753892}
   _coinsCount: {fileID: 7425757514988701070}
   _diamondsCount: {fileID: 2996165140691120476}
   _timeText: {fileID: 2665922455318615155}
