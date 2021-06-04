@@ -60,6 +60,7 @@ namespace Assets.Scripts.MainMenu
             _dropdownChooseInput.onValueChanged.RemoveAllListeners();
             _buttonDailyRewards.onClick.RemoveAllListeners();
             GameUpdater.Instance.Remove(TrailTouch);
+            _testNotificationButton.onClick.RemoveAllListeners();
         }
 
         protected void TrailTouch()
