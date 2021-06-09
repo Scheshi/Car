@@ -1,4 +1,3 @@
-using System;
 using Assets.Scripts.Controllers;
 using Assets.Scripts.Profile;
 using Assets.Scripts.Services;
@@ -26,9 +25,7 @@ public class GameStarter : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(NotificationsManager.gameObject);
+        Destroy(NotificationsManager?.gameObject);
         _controller.Dispose();
     }
-
-    
 }

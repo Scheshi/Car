@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 3081477401425277037}
   - component: {fileID: 4461963477288072844}
   - component: {fileID: 6208995668064833945}
+  - component: {fileID: 7390743668704401974}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -351,6 +352,42 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u0432 \u043C\u0435\u043D\u044E"
+--- !u!114 &7390743668704401974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855176026110079364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:4ad9b98f6355fdb4fba650ea29992181
+    m_TableEntryReference:
+      m_KeyId: 614948184064
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6208995668064833945}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &856231862985360497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,6 +1298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8868320423553638947}
   - component: {fileID: 7777464636110947319}
+  - component: {fileID: 6660957233575310043}
   m_Layer: 5
   m_Name: Rewards
   m_TagString: Untagged
@@ -1311,6 +1349,43 @@ MonoBehaviour:
   _resetTimeButton: {fileID: 1640173291434175324}
   _slots: []
   _tween: {fileID: 11400000, guid: dd85952495169244d8c911c944c2bd5e, type: 2}
+--- !u!114 &6660957233575310043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5147207988091952797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:4ad9b98f6355fdb4fba650ea29992181
+    m_TableEntryReference:
+      m_KeyId: 700952387584
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7777464636110947319}
+        m_TargetAssemblyTypeName: Assets.Scripts.Features.Rewards.DailyRewardsView,
+          Assembly-CSharp
+        m_MethodName: SetTextTakeReward
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6314222103409553377
 GameObject:
   m_ObjectHideFlags: 0
