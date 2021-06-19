@@ -19,6 +19,8 @@ namespace Assets.Scripts.Features.Rewards
         [SerializeField] private RewardSlot[] _slots;
         [SerializeField] private AnimationTween _tween;
         private bool _isAnimate;
+
+        private string _takeRewardText = "Заберите свой приз!";
         //private Sequence _sequence;
 
         public void Init(Action<DailyType, int> onReward, Action onBackToMenu, Action onResetTime)
@@ -33,6 +35,11 @@ namespace Assets.Scripts.Features.Rewards
                 }
             }
             _resetTimeButton.onClick.AddListener(onResetTime.Invoke);
+        }
+
+        public void SetTextTakeReward(string text)
+        {
+            _takeRewardText = text;
         }
 
         public void AddReward(DailyType dailyType, int count)
@@ -68,7 +75,7 @@ namespace Assets.Scripts.Features.Rewards
                 slot.SetInteractable(false);
             }
             var canInteract = date <= TimeSpan.Zero;
-            _timeText.text = !canInteract ? date.ToString("hh\\:mm\\:ss") : "Заберите свой приз!";
+            _timeText.text = !canInteract ? date.ToString("hh\\:mm\\:ss") : _takeRewardText;
             if (currentSlot >= _slots.Length) currentSlot %= _slots.Length;
             _slots[currentSlot].SetInteractable(canInteract);
             if (canInteract && !_isAnimate)

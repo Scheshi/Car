@@ -10,7 +10,8 @@ namespace Assets.Scripts.MainMenu
         [SerializeField] private Button _buttonGarage;
         [SerializeField] private Button _buttonBattle;
         [SerializeField] private Button _buttonDailyRewards;
-        [SerializeField] private Dropdown _dropdownChooseInput;
+        [SerializeField] private Button _testNotificationButton;
+         [SerializeField] private Dropdown _dropdownChooseInput;
         [SerializeField] private TrailRenderer _trailRenderer;
         private Camera _camera;
 
@@ -32,9 +33,25 @@ namespace Assets.Scripts.MainMenu
                 });
             _dropdownChooseInput.onValueChanged.AddListener(chooseInput.Invoke);
             _buttonDailyRewards.onClick.AddListener(actionRewards.Invoke);
+            _testNotificationButton.onClick.AddListener(() =>
+            {
+                CreateNotification("Тест", "Проверка связи", "exampleicon", DateTime.Now.AddSeconds(30));
+            });
 
             GameUpdater.Instance.Add(TrailTouch);
         }
+        
+        private void CreateNotification(string title, string body, string icon, DateTime time)
+        {
+            var notification = GameStarter.NotificationsManager.CreateNotification();
+            notification.Body = body;
+            notification.LargeIcon = icon;
+            notification.Title = title;
+            notification.DeliveryTime = time;
+            GameStarter.NotificationsManager.ScheduleNotification(notification);
+        }
+        
+        
         protected void OnDestroy()
         {
             _buttonGarage.onClick.RemoveAllListeners();
@@ -43,6 +60,7 @@ namespace Assets.Scripts.MainMenu
             _dropdownChooseInput.onValueChanged.RemoveAllListeners();
             _buttonDailyRewards.onClick.RemoveAllListeners();
             GameUpdater.Instance.Remove(TrailTouch);
+            _testNotificationButton.onClick.RemoveAllListeners();
         }
 
         protected void TrailTouch()
