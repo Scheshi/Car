@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 88b1fca80fa24764b85b8c8147b3124b
+  m_SerializeEntries:
+  - m_GUID: 8365d936689cb304583cfd5b82414ee0
+    m_Address: Dirt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 3877782115999185541, guid: 8365d936689cb304583cfd5b82414ee0, type: 3}
+    m_TargetAsset: {fileID: 3877782115999185541, guid: 8365d936689cb304583cfd5b82414ee0, type: 3}
+  - m_GUID: e357440b6fdadb54b99a79c832f3ca6f
+    m_Address: Ground
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 1999191513015353937, guid: e357440b6fdadb54b99a79c832f3ca6f, type: 3}
+    m_TargetAsset: {fileID: 1999191513015353937, guid: e357440b6fdadb54b99a79c832f3ca6f, type: 3}
+  - m_GUID: c941516370ce2d045af1c5670b9eb8ce
+    m_Address: Triangle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2034664719852089438, guid: c941516370ce2d045af1c5670b9eb8ce, type: 3}
+    m_TargetAsset: {fileID: 2034664719852089438, guid: c941516370ce2d045af1c5670b9eb8ce, type: 3}
+  - m_GUID: d9a6d8b05dccee046abfdf71e2bdbf7e
+    m_Address: "\u0421ar"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Car
+    m_MainAsset: {fileID: 4932083621224645924, guid: d9a6d8b05dccee046abfdf71e2bdbf7e, type: 3}
+    m_TargetAsset: {fileID: 4932083621224645924, guid: d9a6d8b05dccee046abfdf71e2bdbf7e, type: 3}
+  - m_GUID: 002888c880f3f7e42b1e3fd35f534d5a
+    m_Address: Bomb
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9c6d11b35afb9264aaa30e6fdfa56380, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 266a5e2a48ce3d7459c97761d5353c3a, type: 2}
+    - {fileID: 11400000, guid: 508d15f6daaba9b428a2b72a314c145a, type: 2}

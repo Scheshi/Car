@@ -22,6 +22,7 @@ namespace Assets.Scripts.GenerateLevel
             _view = LoadView<GenerateLevelView>(_pathToPrefab);
             _completeObserver = completeObserver;
             _background = backgroundController;
+            _view.OnComplete += Init;
         }
 
         public void Init()
