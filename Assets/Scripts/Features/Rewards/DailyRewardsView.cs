@@ -1,7 +1,10 @@
 ﻿using System;
+using Assets.Scripts.Configs.Tweeners;
 using Assets.Scripts.Enums;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 namespace Assets.Scripts.Features.Rewards
 {
@@ -14,6 +17,9 @@ namespace Assets.Scripts.Features.Rewards
         [SerializeField] private Text _timeText;
         [SerializeField] private Button _resetTimeButton;
         [SerializeField] private RewardSlot[] _slots;
+        [SerializeField] private AnimationTween _tween;
+        private bool _isAnimate;
+        private Sequence _sequence;
 
         public void Init(Action<DailyType, int> onReward, Action onBackToMenu, Action onResetTime)
         {
@@ -65,6 +71,30 @@ namespace Assets.Scripts.Features.Rewards
             _timeText.text = !canInteract ? date.ToString("hh\\:mm\\:ss") : "Заберите свой приз!";
             if (currentSlot >= _slots.Length) currentSlot %= _slots.Length;
             _slots[currentSlot].SetInteractable(canInteract);
+            if (canInteract && !_isAnimate)
+            {
+                _isAnimate = true;
+                StartTween(_slots[currentSlot].transform, () =>
+                {
+                    _isAnimate = false;
+                    _sequence = null;
+                });
+            }
+        }
+
+        private void StartTween(Transform currentTransform, Action onComplete)
+        {
+            _sequence = DOTween.Sequence();
+            _sequence.Append(currentTransform.DOMove(currentTransform.position + _tween.MoveValue, _tween.Duration))
+                .SetLoops(_tween.CountLoops).SetEase(_tween.Ease);
+            _sequence.Append(currentTransform.DOScale(_tween.ScaleValue, _tween.Duration));
+            _sequence.Append(currentTransform.DOScale(1, _tween.Duration));
+            _sequence.Append(
+                currentTransform
+                    .DOMove(currentTransform.position, _tween.Duration)
+                    .SetLoops(_tween.CountLoops)
+                    .SetEase(_tween.Ease));
+            _sequence.Play().OnComplete(onComplete.Invoke);
         }
 
         private void OnDestroy()

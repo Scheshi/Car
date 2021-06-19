@@ -9,17 +9,17 @@ E:\MyProg\Unity\UnityEditors\2020.3.3f1\Editor\Unity.exe
 -batchMode
 -noUpm
 -name
-AssetImportWorker0
+AssetImportWorker8
 -projectPath
 E:/MyProjects/UnityProjects/CarAnime
 -logFile
-Logs/AssetImportWorker0.log
+Logs/AssetImportWorker8.log
 -srvPort
 55605
 Successfully changed project path to: E:/MyProjects/UnityProjects/CarAnime
 E:/MyProjects/UnityProjects/CarAnime
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 573.11 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 46.42 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.3f1 (76626098c1c4)
 [Subsystems] Discovering subsystems at path E:/MyProg/Unity/UnityEditors/2020.3.3f1/Editor/Data/Resources/UnitySubsystems

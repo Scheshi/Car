@@ -41,7 +41,7 @@ namespace Assets.Scripts.Features.Rewards
             var oldCount = PlayerPrefs.GetInt(type.ToString(), 0);
             PlayerPrefs.SetInt(type.ToString(), oldCount + count);
             _nextRewardTime = DateTime.UtcNow.Add(new TimeSpan(1, 0, 0, 0));
-            PlayerPrefs.SetString(nameof(_nextRewardTime), _nextRewardTime.ToString());
+            PlayerPrefs.SetString(nameof(_nextRewardTime), _nextRewardTime.ToString(CultureInfo.CurrentCulture));
             _rewardCount++;
             PlayerPrefs.SetInt(nameof(_rewardCount), _rewardCount);
             _view.AddReward(type, count);
