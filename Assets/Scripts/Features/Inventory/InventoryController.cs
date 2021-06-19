@@ -15,40 +15,28 @@ namespace Assets.Scripts.Features.Inventory
         public UsableItem CurrentSelectedItem { get; private set; }
 
 
-        public InventoryController(List<UsableItem> items, Transform uiTransform)
+        public InventoryController(List<UsableItem> items)
         {
             _model = new InventoryModel(items);
-            _view = LoadView(uiTransform);
-            Hide();
         }
 
-        private InventoryView LoadView(Transform uiTransform)
-        {
-            var view = LoadView<InventoryView>(_pathToPrefab, uiTransform);
-            AddGameObject(view.gameObject);
-            return view;
-        }
-        
-        public InventoryController(IInventoryModel model, Transform uiTransform)
+        public InventoryController(IInventoryModel model)
         {
             _model = model;
-            _view = LoadView<InventoryView>(_pathToPrefab, uiTransform);
-            Hide();
         }
 
-        public void Init()
+        public void Init(Transform uiTransform)
         {
+            _view = LoadView<InventoryView>(_pathToPrefab, uiTransform);
             _model.Items.SubscribeObserver(_view.Build);
             _view.Init(SetCurrentSelectedItem, UnsetCurrentSelectedItem);
             _view.Build(_model.Items.List);
-            Show();
         }
 
         public void Deinit()
         {
             _model.Items.UnSubscribeObserver(_view.Build);
             _view.Deinit();
-            Hide();
         }
 
         private void SetCurrentSelectedItem(UsableItem item) => CurrentSelectedItem = item;
@@ -67,7 +55,10 @@ namespace Assets.Scripts.Features.Inventory
 
         public override void Dispose()
         {
-            _model.Items.UnSubscribeObserver(_view.Build);
+            if (_view != null)
+            {
+                _model.Items.UnSubscribeObserver(_view.Build);
+            }
             _model = null;
             base.Dispose();
         }

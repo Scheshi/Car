@@ -14,13 +14,15 @@ namespace Assets.Scripts.Controllers
         {
             for (int i = 0; i < _controllers.Count; i++)
             {
-                _controllers[i].Dispose();
+                if(_controllers[i] != null)
+                    _controllers[i].Dispose();
             }
             _controllers.Clear();
 
             for (int i = 0; i < _views.Count; i++)
             {
-                UnityEngine.Object.Destroy(_views[i]);
+                if (_views[i] != null)
+                    UnityEngine.Object.Destroy(_views[i].gameObject);
             }
             _views.Clear();
         }

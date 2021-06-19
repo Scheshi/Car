@@ -16,4 +16,4 @@ MonoBehaviour:
   Name: Turbo
   Sprite: {fileID: 21300000, guid: f55383a92659a864c945bfa81659f9f0, type: 3}
   UpgradeType: 1
-  IncrementCount: 5
+  IncrementCount: 1

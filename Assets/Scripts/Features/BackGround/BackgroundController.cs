@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Assets.Scripts.Controllers;
 using UnityEngine;
 using Object = UnityEngine.Object;
+
 
 namespace Assets.Scripts.BackGround
 {
@@ -10,8 +10,14 @@ namespace Assets.Scripts.BackGround
     {
         private string _pathToPrefabs = "Prefabs/Backgrounds";
         private IBackground[] _backgrounds;
-        private float _value = 1;
+        private float _value;
+        private float _speed;
 
+        public BackgroundController(float speed)
+        {
+            _speed = speed;
+        }
+        
         private void Execute()
         {
             for (int i = 0; i < _backgrounds.Length; i++)
@@ -26,6 +32,12 @@ namespace Assets.Scripts.BackGround
             GameUpdater.Instance.Add(Execute);
         }
 
+        public override void Dispose()
+        {
+            GameUpdater.Instance.Remove(Execute);
+            base.Dispose();
+        }
+
         private void LoadBackgrounds()
         {
             var background = Resources.LoadAll<Background>(_pathToPrefabs);
@@ -33,7 +45,7 @@ namespace Assets.Scripts.BackGround
             for (int i = 0; i < _backgrounds.Length; i++)
             {
                 var bg = Object.Instantiate(background[i]);
-                
+
                 AddGameObject(bg.gameObject);
                 _backgrounds[i] = bg;
             }

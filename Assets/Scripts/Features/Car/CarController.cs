@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Enums;
+using UnityEngine;
 
 
 namespace Assets.Scripts.Controllers
@@ -8,6 +9,7 @@ namespace Assets.Scripts.Controllers
         private string _pathToPrefab = "Prefabs/car";
         private Car _model;
         private CarView _view;
+        public CarView CarObject => _view;
 
         public CarController(Car model)
         {
@@ -28,12 +30,18 @@ namespace Assets.Scripts.Controllers
                     break;
                 case StateGame.Game:
                     _view = LoadView<CarView>(_pathToPrefab);
+                    AddGameObject(_view.gameObject);
                     break;
             }
         }
-        
-        
-        
-        
+
+        /// <summary>
+        /// If you need moving car object
+        /// </summary>
+        /// <param name="speed">speed of moving object</param>
+        public void ChangeSpeedCar(float speed)
+        {
+            _view.Rigidbody.AddForce(new Vector2(speed * _view.Rigidbody.mass * 10, 0), ForceMode2D.Impulse);
+        }
     }
 }

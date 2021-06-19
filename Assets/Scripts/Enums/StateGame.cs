@@ -4,6 +4,8 @@
     {
         Menu = 0,
         Game,
-        Garage
+        Garage,
+        Battle,
+        DailyRewards
     }
 }

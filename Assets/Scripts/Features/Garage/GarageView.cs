@@ -11,10 +11,12 @@ namespace Assets.Scripts.Features.Garage
         [SerializeField] private Image _speedItem;
         [SerializeField] private Text _speedItemName;
         [SerializeField] private Button _upgradeButton;
+        [SerializeField] private Button _backToMenuButton;
 
-        public void Init(Action upgradeAction)
+        public void Init(Action upgradeAction, Action backToMenu)
         {
             _upgradeButton.onClick.AddListener(upgradeAction.Invoke);
+            _backToMenuButton.onClick.AddListener(backToMenu.Invoke);
         }
 
         public void SetSlot(UsableItem item)

@@ -1,5 +1,7 @@
-﻿using Assets.Scripts.Features.Garage;
+﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Features.Garage;
 using Assets.Scripts.Features.Inventory;
+using Assets.Scripts.Profile;
 using UnityEngine;
 
 
@@ -12,28 +14,22 @@ namespace Assets.Scripts.Controllers
         
         private IInventoryController _inventory;
         private IUpgradableCar _currentCar;
-        public GarageController(IInventoryController inventory, Transform placeUI, IUpgradableCar car)
+        public GarageController(IInventoryController inventory)
         {
             _inventory = inventory;
-            _view = LoadView<GarageView>(_pathToPrefab, placeUI);
-            _view.Init(() => UpgradeCar(car));
-            _view.gameObject.SetActive(false);
+            if(inventory is BaseController controller) AddController(controller);
         }
 
-        public void Init()
+        public void Init(PlayerProfile profile, Transform placeUI)
         {
-            _inventory.Init();
+            _inventory.Init(placeUI);
+            _view = LoadView<GarageView>(_pathToPrefab, placeUI);
+            _view.Init(() => UpgradeCar(profile.Car), () =>
+            {
+                profile.ObserverStateGame.Value = StateGame.Menu;
+            });
             _view.gameObject.SetActive(true);
         }
-
-        public void Deinit()
-        {
-            _inventory.Deinit();
-            _view.gameObject.SetActive(false);
-        }
-
-
-        public IUpgradableCar CurrentCar => _currentCar;
 
         public IUpgradableCar UpgradeCar(IUpgradableCar car)
         {

@@ -19,5 +19,10 @@ public class GameStarter : MonoBehaviour
         _controller = new MainController(_profile, _placeUI);
     }
 
+    private void OnDestroy()
+    {
+        _controller.Dispose();
+    }
+
     
 }
