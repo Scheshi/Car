@@ -5,6 +5,7 @@
         Menu = 0,
         Game,
         Garage,
-        Battle
+        Battle,
+        DailyRewards
     }
 }

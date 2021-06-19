@@ -7,6 +7,7 @@ using Assets.Scripts.Enums;
 using Assets.Scripts.Features.Abilities;
 using Assets.Scripts.Features.Battle;
 using Assets.Scripts.Features.Inventory;
+using Assets.Scripts.Features.Rewards;
 using Assets.Scripts.GenerateLevel;
 using Assets.Scripts.Inputer;
 using Assets.Scripts.MainMenu;
@@ -32,6 +33,7 @@ namespace Assets.Scripts.Controllers
         private AbilitiesController _abilities;
         private MainMenuController _menu;
         private BattleController _battle;
+        private DailyRewardsController _rewards;
         private Transform _placeUI;
         private Button _backToMenuButton;
         private Dictionary<StateGame, Action> _states;
@@ -43,7 +45,8 @@ namespace Assets.Scripts.Controllers
                 {StateGame.Battle, BattleState},
                 {StateGame.Game, GameState},
                 {StateGame.Garage, GarageState},
-                {StateGame.Menu, MenuState}
+                {StateGame.Menu, MenuState},
+                {StateGame.DailyRewards, DailyRewardsState}
             };
             _profile = profile;
             _placeUI = placeUi;
@@ -80,7 +83,7 @@ namespace Assets.Scripts.Controllers
             _profile.Analytic.SendMessage("start_game", new Dictionary<string, object>());
             _backgroundController = BackgroundConstruct();
             _backgroundController.Init();
-            _rightMove.SubscribeObserver(_backgroundController.ChangeSpeed);
+            _profile.Car.CurrentSpeedObserver.SubscribeObserver(_backgroundController.ChangeSpeed);
             _rightMove.SubscribeObserver(_carController.Move);
             _generateLevel = GenerateLevelConstruct();
             _generateLevel.Init();
@@ -94,6 +97,13 @@ namespace Assets.Scripts.Controllers
             {
                 _profile.ObserverStateGame.Value = StateGame.Menu;
             });
+        }
+
+        private void DailyRewardsState()
+        {
+            _menu?.Dispose();
+            _rewards = RewardsConstruct(_profile);
+            _rewards.Init(_placeUI);
         }
 
         private void GarageState()
@@ -110,7 +120,7 @@ namespace Assets.Scripts.Controllers
         {
             if (_backgroundController != null)
             {
-                _rightMove?.UnSubscribeObserver(_backgroundController.ChangeSpeed);
+                _profile.Car.CurrentSpeedObserver.UnSubscribeObserver(_backgroundController.ChangeSpeed);
             }
             _rightMove?.UnSubscribeObserver(_carController.Move);
             _menu = MenuConstruct(_profile);
@@ -121,6 +131,7 @@ namespace Assets.Scripts.Controllers
             _garage?.Dispose();
             //_abilities?.Dispose();
             _battle?.Dispose();
+            _rewards?.Dispose();
             if (_backToMenuButton != null)
             {
                 _backToMenuButton.onClick.RemoveAllListeners();
@@ -132,6 +143,13 @@ namespace Assets.Scripts.Controllers
 
         #region Generates Depencity
 
+        private DailyRewardsController RewardsConstruct(PlayerProfile profile)
+        {
+            var controller = new DailyRewardsController(profile);
+            AddController(controller);
+            return controller;
+        }
+        
         private BattleController BattleConstruct(PlayerProfile profile)
         {
             var controller = new BattleController(profile);
