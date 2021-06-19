@@ -3,6 +3,9 @@
     public enum StateGame
     {
         Menu = 0,
-        Game
+        Game,
+        Garage,
+        Battle,
+        DailyRewards
     }
 }

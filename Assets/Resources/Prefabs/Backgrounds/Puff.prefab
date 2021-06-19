@@ -4011,7 +4011,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6234952440801452405}
-  - component: {fileID: 3569801230330827764}
+  - component: {fileID: 1598185491613745191}
   m_Layer: 0
   m_Name: Puff
   m_TagString: Untagged
@@ -4103,7 +4103,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3569801230330827764
+--- !u!114 &1598185491613745191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4112,12 +4112,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6355426475117580013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f016189c1462ae64faeb553837a547c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 996f9b2c14ce64f459718f63f4f7f048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.007
-  _rightBorder: -4.5
-  _leftBorder: -32.83
+  _divideSpeed: 3
+  _rightBorder: -6.44
+  _leftBorder: -34.83
 --- !u!1 &6500562563835962168
 GameObject:
   m_ObjectHideFlags: 0
