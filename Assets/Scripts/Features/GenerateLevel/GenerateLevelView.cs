@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Features.GenerateLevel;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class GenerateLevelView : MonoBehaviour
+    public class GenerateLevelView : MonoBehaviour, IGenerateLevelView
     {
         [SerializeField] private int _heightPerUnit;
         [SerializeField] private int _startPositionHeight;

@@ -16,4 +16,4 @@ MonoBehaviour:
   Name: TurboX
   Sprite: {fileID: 21300000, guid: 8214d4021eb5ac84ea16485cdeda420a, type: 3}
   UpgradeType: 1
-  IncrementCount: 100
+  IncrementCount: 2

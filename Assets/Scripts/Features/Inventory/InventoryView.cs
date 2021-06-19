@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Assets.Scripts.Configs;
 using Assets.Scripts.Services;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 namespace Assets.Scripts.Features.Inventory
@@ -12,21 +11,19 @@ namespace Assets.Scripts.Features.Inventory
     {
         private EventHandler<UsableItem> Selected;
         private EventHandler<UsableItem> Deselected;
+        private UsableItem _currentChoosesSlot;
         [SerializeField] private Slot _cellPrefab;
         [SerializeField] private Transform _content;
-        private bool _isHide;
 
         public void Init(Action<UsableItem> onSelected, Action<UsableItem> onDeselected)
         {
             Selected += delegate(object sender, UsableItem item)
             {
                 onSelected.Invoke(item);
-                Debug.Log("OnSelected" + item.Name);
             };
             Deselected += delegate(object sender, UsableItem item)
             {
                 onDeselected.Invoke(item);
-                Debug.Log("OnDeselected" + item.Name);
             };
             Show();
         }
@@ -57,7 +54,25 @@ namespace Assets.Scripts.Features.Inventory
                 var i1 = i;
                 _content.GetChild(i).GetComponent<Slot>().SetSlot(items[i].Sprite, items[i].Name, () =>
                 {
-                   Selected.Invoke(this, items[i1]);
+                    if (items[i1] == _currentChoosesSlot)
+                    {
+                        Deselected.Invoke(this, items[i1]);
+                        _content.GetChild(i1).GetComponent<Slot>().Selected(false);
+                        _currentChoosesSlot = null;
+                    }
+                    else
+                    {
+                        Selected.Invoke(this, items[i1]);
+                        for (int y = 0; y < _content.childCount; y++)
+                        {
+                            if (y != i1)
+                            {
+                                _content.GetChild(y).GetComponent<Slot>().Selected(false);
+                            }
+                            else _content.GetChild(y).GetComponent<Slot>().Selected(true);
+                        }
+                        _currentChoosesSlot = items[i1];
+                    }
                 });
             }
         }
@@ -71,12 +86,10 @@ namespace Assets.Scripts.Features.Inventory
         public void Show()
         {
             _content.gameObject.SetActive(true);
-            _isHide = false;
         }
 
         public void Hide()
         {
-            _isHide = true;
             _content.gameObject.SetActive(false);
         }
     }

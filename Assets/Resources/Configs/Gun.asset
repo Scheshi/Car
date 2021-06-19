@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918bc2688ef4f8d4ea96e0c392212a46, type: 3}
   m_Name: Gun
   m_EditorClassIdentifier: 
-  Id: 0
-  Name: 
-  Sprite: {fileID: 0}
-  Ammo: {fileID: 0}
-  Force: {x: 0, y: 0}
+  Id: 1
+  Name: Bomb
+  Sprite: {fileID: 21300000, guid: f55383a92659a864c945bfa81659f9f0, type: 3}
+  Ammo: {fileID: 1440624629040188965, guid: 002888c880f3f7e42b1e3fd35f534d5a, type: 3}
+  Force: {x: 0.01, y: 0.001}

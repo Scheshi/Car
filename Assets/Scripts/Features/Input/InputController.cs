@@ -13,9 +13,7 @@ namespace Assets.Scripts.Inputer
 
         private Dictionary<InputChoose, string> _switch = new Dictionary<InputChoose, string>()
         {
-            #if UNITY_EDITOR
             {InputChoose.Keyboard, "Prefabs/Inputs/keyboardMove"},
-            #endif
             {InputChoose.Gyroscope, "Prefabs/Inputs/gyroscopeMove"},
             {InputChoose.Acceleration, "Prefabs/Inputs/accelerationMove"},
             {InputChoose.Tap, "Prefabs/Inputs/tapMove"},
@@ -32,27 +30,14 @@ namespace Assets.Scripts.Inputer
 
         public void Init(SubscriptionObserver<float> leftMove, SubscriptionObserver<float> rightMove, Car car)
         {
-            _view = LoadView();
+            _view = LoadView<BaseInputView>(_switch[_currentInput]);
+            AddGameObject(_view.gameObject);
             _view.Init(rightMove, leftMove, car.Speed);
-        }
-
-        private BaseInputView LoadView()
-        {
-            SetPathToPrefab(_switch[_currentInput]);
-            return LoadView<BaseInputView>();
         }
 
         public void ChangeCurrentInput(InputChoose input)
         {
             _currentInput = input;
-        }
-
-        public override void Dispose()
-        {
-            base.Dispose();
-            _chooseObserver.UnSubscribeObserver(ChangeCurrentInput);
-            _view = null;
-            _switch = null;
         }
     }
 }
